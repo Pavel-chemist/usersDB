@@ -1,0 +1,6 @@
+<div class="grid-block">
+    <app-user-card *ngFor="let user of users" 
+                    [userData]="user" 
+                    (clickHideUser)="CatchHideClick($event)"
+                    (clickNameToTop)="CatchMoveNameClick($event)"></app-user-card>
+</div>

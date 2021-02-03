@@ -1,0 +1,41 @@
+.user-card-block
+{
+    float: left;
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    background-color: #ffe0f0;
+    border: 1px solid #eec0a0; 
+}
+
+.user-card-button
+{
+    text-align: center;
+}
+
+.smallerButton
+{
+    line-height: 20px;
+    padding: 0px 8px;
+    margin-bottom: 4px;
+}
+
+.user-card-name
+{
+    text-align: center;
+    font-size: 20px;
+    height: 40px;
+}
+
+.user-card-lower-container
+{
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 50px; */
+}
+
+.user-card-lower-container p
+{
+    font-size: 20px;
+    margin-top: 10px;
+}

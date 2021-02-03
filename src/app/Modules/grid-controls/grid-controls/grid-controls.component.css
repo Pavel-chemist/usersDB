@@ -1,0 +1,12 @@
+.grid-control-block
+{
+    background-color: #e0f0ff;
+    border: 1px solid #c0a0ee;
+    line-height: 20px;
+    padding: 20px;
+}
+
+.control-button
+{
+    margin: 0px 20px;
+}

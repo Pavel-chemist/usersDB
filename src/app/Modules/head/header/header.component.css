@@ -1,0 +1,9 @@
+.head-name
+{
+    text-align: center;
+    font-size: 24px;
+    line-height: 50px;
+    font-weight: bolder;
+    background-color: #e0fff0;
+    border: 1px solid #c0eea0;
+}
