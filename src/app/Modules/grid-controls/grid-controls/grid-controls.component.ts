@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { User } from '../../users-grid/users-grid/user.interface';
+import { User } from '../../../Interfaces/user.interface';
 
 @Component({
   selector: 'app-grid-controls',
@@ -26,7 +26,7 @@ export class GridControlsComponent implements OnInit {
 
   public onRevealAllClick()
   {
-    console.log(`Revealing all hidden users:`);
+    console.log(`Trying to reveal all hidden users:`);
     this.clickRevealAll.emit();
   }
 

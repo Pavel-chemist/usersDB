@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { User } from '../../../users-grid/user.interface';
+import { User } from '../../../../../Interfaces/user.interface';
 
 @Component({
   selector: 'app-user-card',
@@ -17,12 +17,11 @@ export class UserCardComponent implements OnInit {
         last: "smith"
     },
     age: 32,
-    isMale: true,
-    isVisible: false
+    isMale: true
   };  
   
   @Output() clickHideUser = new EventEmitter<number>();
-  @Output() clickNameToTop = new EventEmitter<string>();
+  @Output() clickNameToTop = new EventEmitter<number>();
   
   public onHideUserClick(): void
   {
@@ -33,7 +32,7 @@ export class UserCardComponent implements OnInit {
   public onNameToTopClick(): void
   {
     console.log(`Placing ${this.userData.name.first} ${this.userData.name.last}'s name to header.`);
-    this.clickNameToTop.emit(`${this.userData.name.first} ${this.userData.name.last}`);
+    this.clickNameToTop.emit(this.userData.userId);
   }
 
   constructor() 

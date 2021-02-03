@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from './Modules/users-grid/users-grid/user.interface';
+import { TitleName } from './Interfaces/title-name.interface';
+import { User } from './Interfaces/user.interface';
 import { UserDataProviderService } from './Services/user-data-provider.service';
 
 @Component({
@@ -7,94 +8,106 @@ import { UserDataProviderService } from './Services/user-data-provider.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'usersDB';
 
-  public users: User[] = [];
-  public userNameOnHeader: string = "";
-  public visibleItems: User[] = [];
+export class AppComponent implements OnInit{
+  
+  public title: string = 'usersDB';  
+  public userNameOnHeader: TitleName = { name: "", isMale: true };
+
+  private users: User[] = []; //reference list of all users, to be read-only
+  public visibleItems: User[] = []; //list of users, shown at the moment, is subset of 'users'
 
   constructor(service: UserDataProviderService ) 
   { 
     this.users = service.getUserData();
-    this.visibleItems = this.users;
+    this.revealAll(); //using this method to avoid code duplication
     console.log('users data have been loaded');    
   }
 
   ngOnInit(): void {
-    this.userNameOnHeader = this.firstVisibleName(this.users);
+    this.userNameOnHeader = this.firstVisibleName();
   }
 
   public hideUser(receivedId: number): void
   {
-    let nameOfUserToHide: string = "";
-    console.log(`routedClick has been catched, Id=${receivedId}`);
-    for ( let i: number = 0; i < this.users.length; i++ )
-    {
-      if ( this.users[i].userId === receivedId )
-      {
-        this.users[i].isVisible = false;
-        nameOfUserToHide = `${this.users[i].name.first} ${this.users[i].name.last}`;
-        console.log(`${nameOfUserToHide} became invisible`);
-        this.changeTopName(nameOfUserToHide);
-        break;
-      }
-    }
+    let nameOfUserToHide: string = "";    
+    let userIndexToHide: number = 0;
 
-  //  const user: User = this.visibleItems.find(user => {return user.userId === receivedId }); 
-    //using indexOf find the index of this user 
-    //using splice remove this element from VisibleItems
+    let user: User | undefined = this.visibleItems.find(user => { return user.userId === receivedId }); 
+    if ( user != undefined )
+    {
+      console.log(`User Id is ${user.userId}`);      
+      userIndexToHide = this.visibleItems.indexOf(user);
+      nameOfUserToHide = `${this.visibleItems[userIndexToHide].name.first} ${this.visibleItems[userIndexToHide].name.last}`;
+      console.log(`Its array index is ${userIndexToHide}`);
+      this.visibleItems.splice(userIndexToHide, 1);
+      console.log(`${nameOfUserToHide} became invisible`);
+      this.changeTopName( nameOfUserToHide);
+    } 
   }
 
   
   public get males()
   {
-    return this.users.filter(user=>{return user.isMale}); //creates new sub-array
+    return this.visibleItems.filter(user=>{return user.isMale}); //creates new sub-array
   }
 
 
   public hideFemales(): void
   {
-     this.visibleItems = this.males;
+     this.visibleItems = this.males; //using getter above
+     console.log(`All females hid.`);
+     if ( !this.userNameOnHeader.isMale )
+     {
+       console.log('Name on top belongs to one of the females, which were hidden.');
+       this.userNameOnHeader = this.firstVisibleName();
+       console.log('This name is updated.');
+     }
   }
 
   public revealAll(): void
   {
-    this.visibleItems = this.users;
+    console.log(`There are ${this.visibleItems.length} users shown out of total ${this.users.length}.`);
+    this.visibleItems = this.users.slice();
+    console.log(`Now their number is ${this.visibleItems.length}.`);
+    console.log(`Revealing all hidden users.`);
   }
 
-  private firstVisibleName( usersArray: User[] ): string
-  {
-    let firstVisName: string = "";
 
-    for ( let i: number = 0; i < usersArray.length; i++ )
-    {
-      if ( usersArray[i].isVisible )
-      {
-        firstVisName = `${usersArray[i].name.first} ${usersArray[i].name.last}`;
-        break;
-      }
-    }
-    console.log(`returning "${firstVisName}"`);
-    return firstVisName;
-  }
 
-   public onClickNameToTop( name: string ): void
+   public onClickNameToTop( receivedId: number ): void
    {
-      this.userNameOnHeader = name;
+      //find name by id
+      let user: User | undefined = this.visibleItems.find(user => { return user.userId === receivedId });
+      if ( user != undefined )
+      {
+        this.userNameOnHeader.name = `${user.name.first} ${user.name.last}`;
+        this.userNameOnHeader.isMale = user.isMale;
+      }
+      //else do nothing
    }
+
+   private firstVisibleName(): TitleName
+   {
+    //  console.log(`returning "${firstVisName}"`);
+     return { 
+              name: `${this.visibleItems[0].name.first} ${this.visibleItems[0].name.last}`, 
+              isMale: this.visibleItems[0].isMale
+            };
+   }
+
 
    private changeTopName( nameOfHiddenUser: string): void
    {
-     if ( nameOfHiddenUser === this.userNameOnHeader )
+     if ( nameOfHiddenUser === this.userNameOnHeader.name )
      {
-       this.userNameOnHeader = this.firstVisibleName(this.users);
+       this.userNameOnHeader = this.firstVisibleName();
      }
    }
 
    public getTitle(): string
    {
-  //   console.log('qqq');
-    return this.users[0].name.first;
+    // return `${this.visibleItems[0].name.first} ${this.visibleItems[0].name.last}`;
+    return this.userNameOnHeader.name;
    }
 }

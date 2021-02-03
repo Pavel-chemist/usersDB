@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../Modules/users-grid/users-grid/user.interface';
+import { User } from '../Interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,7 @@ export class UserDataProviderService {
         last: "Smith"
       },
       age: 30,
-      isMale: true,
-      isVisible: true
+      isMale: true
     },
     {
       userId: 2,
@@ -29,8 +28,7 @@ export class UserDataProviderService {
         last: "Curie"
       },
       age: 54,
-      isMale: false,
-      isVisible: true
+      isMale: false
     },
     {
       userId: 3,
@@ -40,8 +38,7 @@ export class UserDataProviderService {
         last: "Gates"
       },
       age: 65,
-      isMale: true,
-      isVisible: true
+      isMale: true
     },
     {
       userId: 4,
@@ -51,8 +48,7 @@ export class UserDataProviderService {
         last: "Qwer"
       },
       age: 40,
-      isMale: false,
-      isVisible: true
+      isMale: false
     },
     {
       userId: 5,
@@ -62,8 +58,7 @@ export class UserDataProviderService {
         last: "Asdf"
       },
       age: 21,
-      isMale: true,
-      isVisible: true
+      isMale: true
     },
     {
       userId: 6,
@@ -73,8 +68,7 @@ export class UserDataProviderService {
         last: "Zxcv"
       },
       age: 27,
-      isMale: true,
-      isVisible: true
+      isMale: true
     },
     {
       userId: 7,
@@ -84,8 +78,7 @@ export class UserDataProviderService {
         last: "Rtyu"
       },
       age: 38,
-      isMale: false,
-      isVisible: true
+      isMale: false
     },
     {
       userId: 8,
@@ -95,8 +88,7 @@ export class UserDataProviderService {
         last: "Fghj"
       },
       age: 25,
-      isMale: false,
-      isVisible: true
+      isMale: false
     },
     {
       userId: 9,
@@ -106,8 +98,7 @@ export class UserDataProviderService {
         last: "Vbnm"
       },
       age: 31,
-      isMale: true,
-      isVisible: true
+      isMale: true
     },
     {
       userId: 10,
@@ -117,8 +108,7 @@ export class UserDataProviderService {
         last: "Lkjh"
       },
       age: 24,
-      isMale: false,
-      isVisible: true
+      isMale: false
     } 
   ]; 
 

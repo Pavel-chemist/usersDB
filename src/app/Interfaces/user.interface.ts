@@ -8,5 +8,4 @@ export interface User
     },
     age: number;
     isMale: boolean;
-    isVisible: boolean;
 }

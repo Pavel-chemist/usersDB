@@ -1,9 +1,11 @@
 <!-- UsersDB application -->
 <h1 class="project-title">{{title}}</h1>
 
-<span>{{getTitle()}}</span>
-<!-- for header -- use getter -->
-<app-header [username]="userNameOnHeader"></app-header>
-<app-users-grid [users]="visibleItems" (routedClick)="hideUser($event)" (routedName)="onClickNameToTop($event)">
-</app-users-grid>
-<app-grid-controls (clickHideFemales)="hideFemales()" (clickRevealAll)=" revealAll()"></app-grid-controls>
+<app-header [username]="getTitle()"></app-header>
+
+<app-users-grid [users]="visibleItems" 
+                (routedClick)="hideUser($event)" 
+                (routedName)="onClickNameToTop($event)"></app-users-grid>
+
+<app-grid-controls  (clickHideFemales)="hideFemales()" 
+                    (clickRevealAll)="revealAll()"></app-grid-controls>
