@@ -1,0 +1,11 @@
+<mat-card class="shared-card-block">
+    <div class="shared-card-image-container">
+        <img class="shared-card-image" [src]="userData.photoUrl" alt="user_photo" />
+    </div>
+    <div class="shared-card-text-info">
+        <p class="shared-card-title">{{userData.name.first}} {{userData.name.last}}</p>
+        <p class="shared-card-description-field"><em>Age:</em> {{userData.age}}</p>
+        <p class="shared-card-description-field"><em>Company:</em> {{userData.company}}</p>
+        <p class="shared-card-description-field"><em>Department:</em> {{userData.department}}</p>
+    </div>
+</mat-card>

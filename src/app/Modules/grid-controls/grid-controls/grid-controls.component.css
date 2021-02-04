@@ -4,6 +4,7 @@
     border: 1px solid #c0a0ee;
     line-height: 20px;
     padding: 20px;
+    /* clear: both; */
 }
 
 .control-button

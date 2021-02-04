@@ -7,5 +7,9 @@ export interface User
         last: string;
     },
     age: number;
-    isMale: boolean;
+    isMale: boolean;    
+    company: string;
+    department: string;
+    photoUrl: string;
+    
 }

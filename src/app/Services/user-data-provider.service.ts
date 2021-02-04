@@ -17,18 +17,24 @@ export class UserDataProviderService {
         first: "John",
         last: "Smith"
       },
-      age: 30,
-      isMale: true
+      age: 45,
+      isMale: true,
+      company: "English Army",
+      department: "Exploration",
+      photoUrl: "assets/user-photos/John_Smith.jpg"
     },
     {
       userId: 2,
       name: 
       {
-        first: "Maria",
+        first: "Marie",
         last: "Curie"
       },
       age: 54,
-      isMale: false
+      isMale: false,
+      company: "University of Paris",
+      department: "Institut du Radium",
+      photoUrl: "assets/user-photos/Marie_Curie.jpg"
     },
     {
       userId: 3,
@@ -38,77 +44,101 @@ export class UserDataProviderService {
         last: "Gates"
       },
       age: 65,
-      isMale: true
+      isMale: true,
+      company: 'Microsoft',
+      department: 'Management',
+      photoUrl: 'assets/user-photos/Bill_Gates.jpg'
     },
     {
       userId: 4,
       name: 
       {
-        first: "User1",
-        last: "Qwer"
+        first: "Gwynne",
+        last: "Shotwell"
       },
-      age: 40,
-      isMale: false
+      age: 57,
+      isMale: false,
+      company: "SpaceX",
+      department: "Sales",
+      photoUrl: "assets/user-photos/Gwynne_Shotwell.jpg"
     },
     {
       userId: 5,
       name: 
       {
-        first: "User2",
-        last: "Asdf"
+        first: "Elon",
+        last: "Musk"
       },
-      age: 21,
-      isMale: true
+      age: 49,
+      isMale: true,
+      company: "Tesla",
+      department: "Management",
+      photoUrl: "assets/user-photos/Elon_Musk.jpg"
     },
     {
       userId: 6,
       name: 
       {
-        first: "User3",
-        last: "Zxcv"
+        first: "Jack",
+        last: "Sparrow"
       },
-      age: 27,
-      isMale: true
+      age: 35,
+      isMale: true,
+      company: "Brethren Court",
+      department: "Piracy",
+      photoUrl: "assets/user-photos/Jack_Sparrow.jpg"
     },
     {
       userId: 7,
       name: 
       {
-        first: "User4",
-        last: "Rtyu"
+        first: "Brian",
+        last: "Kernighan"
       },
-      age: 38,
-      isMale: false
+      age: 79,
+      isMale: true,
+      company: "Bell Labs",
+      department: "Computer Science",
+      photoUrl: "assets/user-photos/Brian_Kernighan.jpg"
     },
     {
       userId: 8,
       name: 
       {
-        first: "User5",
-        last: "Fghj"
+        first: "Ada",
+        last: "Lovelace"
       },
       age: 25,
-      isMale: false
+      isMale: false,
+      company: "Babbage Machines",
+      department: "Software research",
+      photoUrl: "assets/user-photos/Ada_Lovelace.jpg"
     },
     {
       userId: 9,
       name: 
       {
-        first: "User6",
-        last: "Vbnm"
+        first: "Robert",
+        last: "Oppenheimer"
       },
       age: 31,
-      isMale: true
+      isMale: true,
+      company: "Los-Alamos facility",
+      department: "Nuclear weapons",
+      photoUrl: "assets/user-photos/Robert_Oppenheimer.jpg"
     },
     {
       userId: 10,
       name: 
       {
-        first: "User7",
-        last: "Lkjh"
+        first: "Leia",
+        last: "Organa"
       },
-      age: 24,
-      isMale: false
+      age: 33,
+      isMale: false,
+      company: "Resistance Forces",
+      department: "Commandment",
+      photoUrl: "assets/user-photos/Princess_Leia.jpg"
     } 
   ]; 
 

@@ -1,6 +1,9 @@
 <div class="grid-block">
-    <app-user-card *ngFor="let user of users" 
+    <!-- <app-user-card *ngFor="let user of users" 
                     [userData]="user" 
                     (clickHideUser)="CatchHideClick($event)"
-                    (clickNameToTop)="CatchMoveNameClick($event)"></app-user-card>
+                    (clickNameToTop)="CatchMoveNameClick($event)"></app-user-card> -->
+    <app-shared-card *ngFor="let user of users" [userData]="user"></app-shared-card>
+    <!-- Following is just for allowing grid-block to stretch accomodating all floated "app-shared-card" blocks -->
+    <div style="clear: both;"></div>
 </div>

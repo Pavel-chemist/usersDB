@@ -17,7 +17,10 @@ export class UserCardComponent implements OnInit {
         last: "smith"
     },
     age: 32,
-    isMale: true
+    isMale: true,
+    company: "",
+    department: "",
+    photoUrl: ""
   };  
   
   @Output() clickHideUser = new EventEmitter<number>();
