@@ -1,15 +1,12 @@
-export interface User
-{
+export interface User {
     userId: number;
-    name:
-    {
+    name: {
         first: string;
         last: string;
     },
     age: number;
-    isMale: boolean;    
+    isMale: boolean;
     company: string;
     department: string;
     photoUrl: string;
-    
 }

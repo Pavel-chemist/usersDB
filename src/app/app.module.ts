@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { UserModule } from './Modules/user/users.module';
-import { SharedCardModule } from './Modules/shared-card/shared-card.module';
+import { UserModule } from './Modules/user/user.module';
+import { SharedModule } from './Modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { SharedCardModule } from './Modules/shared-card/shared-card.module';
     BrowserAnimationsModule,
 //  internal feature modules:
     UserModule,     
-    SharedCardModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

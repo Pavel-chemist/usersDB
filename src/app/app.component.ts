@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleName } from './Interfaces/title-name.interface';
-import { User } from './Interfaces/user.interface';
-import { UserDataProviderService } from './Services/user-data-provider.service';
+import { TitleName } from './Modules/shared/Interfaces/title-name.interface';
+import { User } from './Modules/shared/Interfaces/user.interface';
+import { UserDataProviderService } from './Modules/user/services/user-data-provider.service';
 
 @Component({
   selector: 'app-root',

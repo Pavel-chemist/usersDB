@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { User } from '../../../Interfaces/user.interface';
+import { User } from '../../../shared/Interfaces/user.interface';
 
 @Component({
   selector: 'app-grid-controls',
