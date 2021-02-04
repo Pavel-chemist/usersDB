@@ -89,7 +89,6 @@ export class AppComponent implements OnInit{
 
    private firstVisibleName(): TitleName
    {
-    //  console.log(`returning "${firstVisName}"`);
      return { 
               name: `${this.visibleItems[0].name.first} ${this.visibleItems[0].name.last}`, 
               isMale: this.visibleItems[0].isMale
@@ -107,7 +106,6 @@ export class AppComponent implements OnInit{
 
    public getTitle(): string
    {
-    // return `${this.visibleItems[0].name.first} ${this.visibleItems[0].name.last}`;
     return this.userNameOnHeader.name;
    }
 }
