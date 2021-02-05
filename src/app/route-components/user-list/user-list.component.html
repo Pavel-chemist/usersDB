@@ -1,0 +1,7 @@
+<app-header></app-header>
+
+<app-users-grid [users]="visibleItems" 
+                (routedClick)="hideUser($event)"></app-users-grid>
+
+<app-grid-controls  (clickHideFemales)="hideFemales()" 
+                    (clickRevealAll)="revealAll()"></app-grid-controls>

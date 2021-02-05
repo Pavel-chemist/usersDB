@@ -1,11 +1,10 @@
 <!-- UsersDB application -->
 <h1 class="project-title">{{title}}</h1>
 
-<app-header [username]="getTitle()"></app-header>
+<nav>
+    <a routerLink="/user-list">List of users</a>
+    |
+    <a routerLink="/add-user-form">Add new User</a>
+</nav>
 
-<app-users-grid [users]="visibleItems" 
-                (routedClick)="hideUser($event)" 
-                (routedName)="onClickNameToTop($event)"></app-users-grid>
-
-<app-grid-controls  (clickHideFemales)="hideFemales()" 
-                    (clickRevealAll)="revealAll()"></app-grid-controls>
+<router-outlet></router-outlet>
