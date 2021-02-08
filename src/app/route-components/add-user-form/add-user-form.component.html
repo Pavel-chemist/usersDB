@@ -11,18 +11,42 @@
     photoUrl: string;
 } -->
 
-<!-- <div>
-    <span>Name: </span>
-    <input type="text" [formControl]="name">
-</div>
-
-<form [formGroup]="fullName">
-    <label>First Name: 
-        <input type="text" formControlName="firstName">
+<form [formGroup]="AddUser" (ngSubmit)="onSubmit()">
+    <div formGroupName="name">
+        <label>First Name: 
+            <input type="text" formControlName="first">
+        </label>
+        <br/>
+        <label>Last Name: 
+            <input type="text" formControlName="last">
+        </label>
+    </div>
+    <hr/>
+    <label>Age: 
+        <input type="text" formControlName="age">
     </label>
-    <label>Last Name: 
-        <input type="text" formControlName="lastName">
+    <br/>
+    <label>Gender: 
+        <input type="radio" value=true formControlName="isMale" id="male">
+        <label for="male">Male</label>
+        <input type="radio" value=false formControlName="isMale" id="female">
+        <label for="female">Female</label>
     </label>
-</form> -->
+    <br/>
+    <label>Company: 
+        <input type="text" formControlName="company">
+    </label>
+    <br/>
+    <label>Department: 
+        <input type="text" formControlName="department">
+    </label>
+    <br/>
+    <label>Photo: 
+        <input type="file" formControlName="photoUrl">
+    </label>
+    <br/>    
+    <button type="submit" [disabled]="!AddUser.valid">Submit</button>
+</form> 
 
-<input type="button" value="Submit" (click)="onSubmit()">
+
+<!-- <input type="button" value="Submit" (click)="onSubmit()"> -->

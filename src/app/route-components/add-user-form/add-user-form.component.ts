@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/Modules/shared/Interfaces/user.interface';
 
 @Component({
   selector: 'app-add-user-form',
@@ -8,41 +9,57 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AddUserFormComponent implements OnInit {
 
+  public newUser: User =
+  {
+    userId: 0,
+    name: {
+        first: '',
+        last: ''
+    },
+    age: 0,
+    isMale: true,
+    company: '',
+    department: '',
+    photoUrl: ''
+  };
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  public name = new FormControl('');
 
-  public fullName = new FormGroup(
-    {
-      firstName: new FormControl(''),
-      lastName: new FormControl('')
-    }
-  );
+public AddUser = new FormGroup(
+  {
+    name: new FormGroup(
+      {
+        first: new FormControl('', Validators.required ),
+        last: new FormControl('', Validators.required)
+      }),
+    age: new FormControl('', [Validators.required, Validators.min(5), Validators.max(120)]),
+    isMale: new FormControl('', Validators.required ),
+    company: new FormControl(''),
+    department: new FormControl(''),
+    photoUrl: new FormControl('')
+  });
 
   public onSubmit()
   {
-    console.log(this.name.value);
-    console.log(`Full name is ${this.fullName.value.firstName} ${this.fullName.value.lastName}`);
+    this.newUser =
+    {
+      userId: 0,
+      name: {
+          first: this.AddUser.value.name.first,
+          last: this.AddUser.value.name.last
+      },
+      age: this.AddUser.value.age,
+      isMale: this.AddUser.value.isMale,
+      company:  this.AddUser.value.company ? this.AddUser.value.company : 'none',
+      department: this.AddUser.value.department ? this.AddUser.value.department: 'none',
+      photoUrl: this.AddUser.value.photoUrl ? this.AddUser.value.photoUrl : 'assets/placeholder.jpg'
+    }
+    
+    console.log(this.newUser);
   }
-
-  /*
-  export interface User {
-    userId: number;
-    name: {
-        first: string;
-        last: string;
-    },
-    age: number;
-    isMale: boolean;
-    company: string;
-    department: string;
-    photoUrl: string;
-} 
-*/
-
-
 
 }
