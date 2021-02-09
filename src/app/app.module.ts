@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,8 @@ import { AddUserFormComponent } from './route-components/add-user-form/add-user-
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatInputModule,
+
 //  internal feature modules:
     UserModule,     
     SharedModule

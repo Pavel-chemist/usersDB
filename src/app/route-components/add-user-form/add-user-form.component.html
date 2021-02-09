@@ -13,12 +13,26 @@
 
 <form [formGroup]="AddUser" (ngSubmit)="onSubmit()">
     <div formGroupName="name">
+        <!-- <mat-form-field class="user-form-text-field">
+            <mat-label class="user-form-text-field-label">First Name: 
+                <input matInput type="text" formControlName="first" class="user-form-text-input">
+            </mat-label>
+        </mat-form-field>
+        
+        <mat-form-field class="user-form-text-field">
+            <mat-label>Last Name: 
+                <input matInput type="text" formControlName="last">
+            </mat-label>
+        </mat-form-field> -->
+
+        
         <label>First Name: 
             <input type="text" formControlName="first">
         </label>
-        <br/>
+        <br/>       
+        
         <label>Last Name: 
-            <input type="text" formControlName="last">
+            <input matInput type="text" formControlName="last">
         </label>
     </div>
     <hr/>
