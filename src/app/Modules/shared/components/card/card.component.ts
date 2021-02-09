@@ -8,20 +8,7 @@ import { User } from 'src/app/Modules/shared/Interfaces/user.interface';
 })
 export class CardComponent implements OnInit {
 
-  @Input() userData: User = //following is placeholder
-    {
-      userId: 1,
-      name:
-      {
-        first: 'Bill',
-        last: 'Gates'
-      },
-      age: 65,
-      isMale: true,
-      company: 'Microsoft',
-      department: 'Management',
-      photoUrl: 'assets/user-photos/Bill_Gates.jpg'
-    };
+  @Input() userData: User;
 
   constructor() { }
 
