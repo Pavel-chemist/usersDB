@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { User } from 'src/app/Modules/shared/Interfaces/user.interface';
 import { UserDataProviderService } from 'src/app/Modules/user/services/user-data-provider.service';
 
@@ -34,11 +34,13 @@ export class AddUserFormComponent implements OnInit {
             company: new FormControl(''),
             department: new FormControl(''),
             photoUrl: new FormControl(''),
-            email: new FormControl('')
+            email: new FormControl('', [ Validators.required, Validators.email ] )
         });
 
     public onSubmit() 
     {
+      if ( this.AddUser.valid )
+      {
         this.newUser =
         {
             userId: Date.now(), //creates a kind of unique id
@@ -54,11 +56,30 @@ export class AddUserFormComponent implements OnInit {
             email: this.AddUser.value.email
         }
 
-        console.log(this.newUser);
-
-        
-        
+      console.log(this.newUser);
+      console.log(this.AddUser);
+      }
+      else
+      {
+        console.log("The form is invalid, please fill required fields.");
+        console.log(this.AddUser);
+      }
     }
 
+    get email()
+    {
+      return this.AddUser;
+    }
+
+    //
+    private validateGmail ( emailInputString: string ): ValidatorFn 
+    {
+      return (control: AbstractControl): {[key: string]: any} | null => 
+      {
+        const gmail =  emailInputString.slice(-10);
+        return gmail === "@gmail.com" ? {forbiddenName: {value: control.value}} : null;
+      }
+    }
+    
 
 }

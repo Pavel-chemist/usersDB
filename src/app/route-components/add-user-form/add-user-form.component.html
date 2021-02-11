@@ -1,46 +1,42 @@
-<!-- export interface User {
-    userId: number;
-    name: {
-        first: string;
-        last: string;
-    },
-    age: number;
-    isMale: boolean;
-    company: string;
-    department: string;
-    photoUrl: string;
-} -->
-
 <form [formGroup]="AddUser" (ngSubmit)="onSubmit()">
     <div formGroupName="name">
         <mat-form-field class="user-form-text-field">
             <mat-label>First Name: </mat-label>
-            <input matInput type="text" formControlName="first">            
+            <input matInput type="text" formControlName="first">
+            <mat-error>This is required field</mat-error>
         </mat-form-field>
-        
+
         <mat-form-field class="user-form-text-field">
             <mat-label>Last Name: </mat-label>
             <input matInput type="text" formControlName="last">            
+            <mat-error>This is required field</mat-error>
         </mat-form-field>
     </div>
     
     
-    <hr/>
     <mat-form-field class="user-form-text-field">
         <mat-label>Age:</mat-label>
         <input matInput type="text" formControlName="age">
+        <mat-error *ngIf="AddUser.controls.age.hasError('required')">This is required field</mat-error>
+        <mat-error *ngIf="AddUser.controls.age.hasError('min')">Minimum age is 5</mat-error>
+        <mat-error *ngIf="AddUser.controls.age.hasError('max')">Maximum age is 120</mat-error>
     </mat-form-field>
 
-    <label>Gender:</label><br/>
-    <mat-radio-group aria-label="Gender:" formControlName="isMale" >
-        <mat-radio-button value="true">Male</mat-radio-button><br/>
-        <mat-radio-button value="false">Female</mat-radio-button>
-    </mat-radio-group>
-
+    <div class="user-form-text-field">
+        <label>Gender:</label><br/>
+        <mat-radio-group aria-label="Gender:" formControlName="isMale" >
+            <mat-radio-button value="true">Male</mat-radio-button><br/>
+            <mat-radio-button value="false">Female</mat-radio-button>
+        </mat-radio-group>
+        <!-- <mat-error *ngIf="hasErrors">This is required field</mat-error> -->
+    </div>
 
     <mat-form-field class="user-form-text-field">
         <mat-label>Email: </mat-label>
-        <input matInput type="text" formControlName="email">        
+        <input matInput type="text" formControlName="email">
+        <mat-error *ngIf="AddUser.controls.email.hasError('required')">This is required field</mat-error>
+        <mat-error *ngIf="AddUser.controls.email.hasError('email')">This should be proper email address</mat-error>
+        
     </mat-form-field>
     
     <mat-form-field class="user-form-text-field">
@@ -53,14 +49,13 @@
         <input matInput type="text" formControlName="department">
     </mat-form-field>
 
-    
-    <label>Photo: </label>
-    <input type="file" formControlName="photoUrl">
-    
-    <br/>    
-    
-    <button mat-raised-button type="submit">Add user</button>
+    <div class="user-form-text-field">
+        <label>Photo: </label>
+        <input type="file" formControlName="photoUrl">
+    </div>
+       
+    <div class="user-form-text-field">
+        <button mat-raised-button type="submit">Add user</button>
+    </div>
+
 </form> 
-
-
-<!-- <input type="button" value="Submit" (click)="onSubmit()"> -->
