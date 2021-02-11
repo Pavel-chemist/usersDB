@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/Modules/shared/Interfaces/user.interface';
+import { UserDataProviderService } from 'src/app/Modules/user/services/user-data-provider.service';
 
 @Component({
     selector: 'app-add-user-form',
@@ -11,9 +12,15 @@ export class AddUserFormComponent implements OnInit {
 
     public newUser: User;
 
-    constructor() { }
+    constructor(service: UserDataProviderService) 
+    { 
+      service.addNewUser(this.newUser);
+    }
 
-    ngOnInit(): void {    }
+    ngOnInit(): void 
+    { 
+      
+    }
 
     public AddUser = new FormGroup(
         {
@@ -26,25 +33,32 @@ export class AddUserFormComponent implements OnInit {
             isMale: new FormControl('', Validators.required),
             company: new FormControl(''),
             department: new FormControl(''),
-            photoUrl: new FormControl('')
+            photoUrl: new FormControl(''),
+            email: new FormControl('')
         });
 
-    public onSubmit() {
+    public onSubmit() 
+    {
         this.newUser =
         {
-            userId: 0,
+            userId: Date.now(), //creates a kind of unique id
             name: {
                 first: this.AddUser.value.name.first,
                 last: this.AddUser.value.name.last
             },
-            age: this.AddUser.value.age,
+            age: Number.parseInt(this.AddUser.value.age),
             isMale: this.AddUser.value.isMale,
             company: this.AddUser.value.company ? this.AddUser.value.company : 'none',
             department: this.AddUser.value.department ? this.AddUser.value.department : 'none',
-            photoUrl: this.AddUser.value.photoUrl ? this.AddUser.value.photoUrl : 'assets/placeholder.jpg'
+            photoUrl: this.AddUser.value.photoUrl ? this.AddUser.value.photoUrl : 'assets/placeholder.jpg',
+            email: this.AddUser.value.email
         }
 
         console.log(this.newUser);
+
+        
+        
     }
+
 
 }

@@ -14,52 +14,52 @@
 <form [formGroup]="AddUser" (ngSubmit)="onSubmit()">
     <div formGroupName="name">
         <mat-form-field class="user-form-text-field">
-            <mat-label class="user-form-text-field-label">First Name: 
-                <input matInput type="text" formControlName="first" class="user-form-text-input">
-            </mat-label>
+            <mat-label>First Name: </mat-label>
+            <input matInput type="text" formControlName="first">            
         </mat-form-field>
         
         <mat-form-field class="user-form-text-field">
-            <mat-label>Last Name: 
-                <input matInput type="text" formControlName="last">
-            </mat-label>
+            <mat-label>Last Name: </mat-label>
+            <input matInput type="text" formControlName="last">            
         </mat-form-field>
-
-        
-        <label>First Name: 
-            <input type="text" formControlName="first">
-        </label>
-        <br/>       
-        
-        <label>Last Name: 
-            <input matInput type="text" formControlName="last">
-        </label>
     </div>
+    
+    
     <hr/>
-    <label>Age: 
-        <input type="text" formControlName="age">
-    </label>
-    <br/>
-    <label>Gender: 
-        <input type="radio" value=true formControlName="isMale" id="male">
-        <label for="male">Male</label>
-        <input type="radio" value=false formControlName="isMale" id="female">
-        <label for="female">Female</label>
-    </label>
-    <br/>
-    <label>Company: 
-        <input type="text" formControlName="company">
-    </label>
-    <br/>
-    <label>Department: 
-        <input type="text" formControlName="department">
-    </label>
-    <br/>
-    <label>Photo: 
-        <input type="file" formControlName="photoUrl">
-    </label>
+    <mat-form-field class="user-form-text-field">
+        <mat-label>Age:</mat-label>
+        <input matInput type="text" formControlName="age">
+    </mat-form-field>
+
+    <label>Gender:</label><br/>
+    <mat-radio-group aria-label="Gender:" formControlName="isMale" >
+        <mat-radio-button value="true">Male</mat-radio-button><br/>
+        <mat-radio-button value="false">Female</mat-radio-button>
+    </mat-radio-group>
+
+
+    <mat-form-field class="user-form-text-field">
+        <mat-label>Email: </mat-label>
+        <input matInput type="text" formControlName="email">        
+    </mat-form-field>
+    
+    <mat-form-field class="user-form-text-field">
+    <mat-label>Company: </mat-label>
+        <input matInput type="text" formControlName="company">
+    </mat-form-field>
+    
+    <mat-form-field class="user-form-text-field">
+        <mat-label>Department: </mat-label>
+        <input matInput type="text" formControlName="department">
+    </mat-form-field>
+
+    
+    <label>Photo: </label>
+    <input type="file" formControlName="photoUrl">
+    
     <br/>    
-    <button type="submit" [disabled]="!AddUser.valid">Submit</button>
+    
+    <button mat-raised-button type="submit">Add user</button>
 </form> 
 
 

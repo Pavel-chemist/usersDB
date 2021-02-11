@@ -4,7 +4,13 @@ import { User } from '../../shared/Interfaces/user.interface';
 @Injectable()
 export class UserDataProviderService {
 
-  private arrayOfUserObjects: User[] =
+  private UsersArray: User[];
+  private SupplementaryUsersArray: User[];
+  
+
+  public getUserData() 
+  {
+    this.UsersArray =
     [
       {
         userId: 1,
@@ -17,7 +23,8 @@ export class UserDataProviderService {
         isMale: true,
         company: "English Army",
         department: "Exploration",
-        photoUrl: "assets/user-photos/John_Smith.jpg"
+        photoUrl: "assets/user-photos/John_Smith.jpg",
+        email: "JohnSmith@gmail.com"
       },
       {
         userId: 2,
@@ -30,7 +37,8 @@ export class UserDataProviderService {
         isMale: false,
         company: "University of Paris",
         department: "Institut du Radium",
-        photoUrl: "assets/user-photos/Marie_Curie.jpg"
+        photoUrl: "assets/user-photos/Marie_Curie.jpg",
+        email: "MarieCurie@gmail.com"
       },
       {
         userId: 3,
@@ -43,7 +51,8 @@ export class UserDataProviderService {
         isMale: true,
         company: 'Microsoft',
         department: 'Management',
-        photoUrl: 'assets/user-photos/Bill_Gates.jpg'
+        photoUrl: 'assets/user-photos/Bill_Gates.jpg',
+        email: "BillGates@gmail.com"
       },
       {
         userId: 4,
@@ -56,7 +65,8 @@ export class UserDataProviderService {
         isMale: false,
         company: "SpaceX",
         department: "Sales",
-        photoUrl: "assets/user-photos/Gwynne_Shotwell.jpg"
+        photoUrl: "assets/user-photos/Gwynne_Shotwell.jpg",
+        email: "GwynneShotwell@gmail.com"
       },
       {
         userId: 5,
@@ -69,7 +79,8 @@ export class UserDataProviderService {
         isMale: true,
         company: "Tesla",
         department: "Management",
-        photoUrl: "assets/user-photos/Elon_Musk.jpg"
+        photoUrl: "assets/user-photos/Elon_Musk.jpg",
+        email: "ElonMusk@gmail.com"
       },
       {
         userId: 6,
@@ -82,7 +93,8 @@ export class UserDataProviderService {
         isMale: true,
         company: "Brethren Court",
         department: "Piracy",
-        photoUrl: "assets/user-photos/Jack_Sparrow.jpg"
+        photoUrl: "assets/user-photos/Jack_Sparrow.jpg",
+        email: "JackSparrow@gmail.com"
       },
       {
         userId: 7,
@@ -95,7 +107,9 @@ export class UserDataProviderService {
         isMale: true,
         company: "Bell Labs",
         department: "Computer Science",
-        photoUrl: "assets/user-photos/Brian_Kernighan.jpg"
+        photoUrl: "assets/user-photos/Brian_Kernighan.jpg",
+        email: "BrianKernighan@gmail.com"
+
       },
       {
         userId: 8,
@@ -108,7 +122,8 @@ export class UserDataProviderService {
         isMale: false,
         company: "Babbage Machines",
         department: "Software research",
-        photoUrl: "assets/user-photos/Ada_Lovelace.jpg"
+        photoUrl: "assets/user-photos/Ada_Lovelace.jpg",
+        email: "AdaLovelace@gmail.com"
       },
       {
         userId: 9,
@@ -121,7 +136,8 @@ export class UserDataProviderService {
         isMale: true,
         company: "Los-Alamos facility",
         department: "Nuclear weapons",
-        photoUrl: "assets/user-photos/Robert_Oppenheimer.jpg"
+        photoUrl: "assets/user-photos/Robert_Oppenheimer.jpg",
+        email: "RobertOppenheimer@gmail.com"
       },
       {
         userId: 10,
@@ -134,18 +150,35 @@ export class UserDataProviderService {
         isMale: false,
         company: "Resistance Forces",
         department: "Commandment",
-        photoUrl: "assets/user-photos/Princess_Leia.jpg"
+        photoUrl: "assets/user-photos/Princess_Leia.jpg",
+        email: "PrincessLeia@gmail.com"
       }
     ];
 
-  public getUserData() {
-    return this.arrayOfUserObjects;
+    if ( localStorage['storedUsers']) 
+    {
+      this.SupplementaryUsersArray = JSON.parse( localStorage['storedUsers']);
+      
+      for ( let i: number = 0; i < this.SupplementaryUsersArray.length; i++ )
+      {
+        this.UsersArray.push(this.SupplementaryUsersArray[i]);
+      }
+    }
+
+    
+
+    return this.UsersArray;
   }
 
 
   // ADD user functionality
-  public addNewUser(): void {
-
+  public addNewUser( user: User ): void 
+  {
+    if ( user != undefined )
+    {
+      this.SupplementaryUsersArray.push(user);
+      localStorage['storedUsers'] = JSON.stringify(this.SupplementaryUsersArray);
+    }
   }
 
 }

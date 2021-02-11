@@ -9,4 +9,5 @@ export interface User {
     company: string;
     department: string;
     photoUrl: string;
+    email: string;
 }
