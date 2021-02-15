@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import { AddUserFormComponent } from './route-components/add-user-form/add-user-
     MatInputModule,
     MatRadioModule,
     MatButtonModule,
+    MatSnackBarModule,
 //  internal feature modules:
     UserModule,     
     SharedModule

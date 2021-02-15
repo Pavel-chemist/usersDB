@@ -5,7 +5,7 @@ import { User } from '../../shared/Interfaces/user.interface';
 export class UserDataProviderService {
 
   private UsersArray: User[];
-  private SupplementaryUsersArray: User[];
+  private SupplementaryUsersArray: User[] = [];
   
 
   public getUserData() 
@@ -163,9 +163,7 @@ export class UserDataProviderService {
       {
         this.UsersArray.push(this.SupplementaryUsersArray[i]);
       }
-    }
-
-    
+    }    
 
     return this.UsersArray;
   }
@@ -179,6 +177,21 @@ export class UserDataProviderService {
       this.SupplementaryUsersArray.push(user);
       localStorage['storedUsers'] = JSON.stringify(this.SupplementaryUsersArray);
     }
+  }
+
+  public checkIfEmailIsUnique (emailAddress: string): boolean
+  {
+    let isUnique: boolean = true;
+    for( let i: number = 0; i < this.UsersArray.length; i++ )
+    {
+      if ( this.UsersArray[i].email === emailAddress )
+      {
+        isUnique = false;
+        break;
+      }
+    }
+
+    return isUnique;
   }
 
 }

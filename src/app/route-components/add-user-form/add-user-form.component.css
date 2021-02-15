@@ -1,6 +1,15 @@
+.user-form-container
+{
+    width: 500px;
+    margin: auto;
+    background-color: #f0f0f0;
+    padding: 16px;
+}
+
 .user-form-text-field
 {
     display: block;
-    width: 500px;
+    width: 90%;
     margin: 8px 16px 0px 16px;
+    background-color: #f7f7f7;
 }

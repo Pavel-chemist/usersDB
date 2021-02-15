@@ -5,6 +5,7 @@ import { UsersGridComponent } from './components/users-grid/users-grid.component
 import { GridControlsComponent } from './components/grid-controls/grid-controls.component';
 import { SharedModule } from '../shared/shared.module';
 import { UserDataProviderService } from './services/user-data-provider.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { UserDataProviderService } from './services/user-data-provider.service';
     ],
     imports: [
         CommonModule,
-        SharedModule
+        SharedModule,
+        MatButtonModule
     ],
     exports: [
         HeaderComponent,
