@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../../shared/Interfaces/user.interface';
 
 @Injectable()
@@ -179,19 +181,18 @@ export class UserDataProviderService {
     }
   }
 
-  public checkIfEmailIsUnique (emailAddress: string): boolean
+  public checkIfEmailIsUnique (emailAddress: string): Observable<boolean>
   {
     let isUnique: boolean = true;
-    for( let i: number = 0; i < this.UsersArray.length; i++ )
-    {
-      if ( this.UsersArray[i].email === emailAddress )
-      {
-        isUnique = false;
-        break;
-      }
-    }
+    let foundElement: User | undefined;
 
-    return isUnique;
+    foundElement = this.UsersArray.find(user => user.email === emailAddress );
+    if ( foundElement != undefined )
+    {
+      isUnique = false;
+    }
+    
+    return of(isUnique);
   }
 
 }

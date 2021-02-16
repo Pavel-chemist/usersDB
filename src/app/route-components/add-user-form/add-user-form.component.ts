@@ -3,6 +3,8 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn,
 import { User } from 'src/app/Modules/shared/Interfaces/user.interface';
 import { UserDataProviderService } from 'src/app/Modules/user/services/user-data-provider.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-add-user-form',
@@ -39,7 +41,7 @@ export class AddUserFormComponent implements OnInit {
                                     [ Validators.required, 
                                       Validators.email, 
                                       this.validateGmail, 
-                                      // this.validateUniqueEmail 
+                                      this.validateUniqueEmail 
                                     ] )
         });
 
@@ -62,22 +64,20 @@ export class AddUserFormComponent implements OnInit {
             email: this.AddUser.value.email
         }
 
-      console.log(this.newUser);
-      this.service.addNewUser(this.newUser);
-      //
-      //show snack-bar
-      // openSnackBar("qwer");
-      this._snackBar.open("User is added to the list", "Dismiss", { duration: 5000, horizontalPosition: 'right', verticalPosition: 'top' });
-      //
-      // wait 3 seconds
-      setTimeout( () => {
+        console.log(this.newUser);
+        this.service.addNewUser(this.newUser);
         //
-        // redirect to the list of users
-        console.log(`${this.newUser.name.first} ${this.newUser.name.last} was added to list.`); 
-        location.assign("/user-list");
-      }, 3000);
-
-      
+        //show snack-bar
+        // openSnackBar("qwer");
+        this._snackBar.open(`User ${this.newUser.name.first} ${this.newUser.name.last} is added to the list`, "Dismiss", { duration: 5000, horizontalPosition: 'right', verticalPosition: 'top' });
+        //
+        // wait 3 seconds
+        setTimeout( () => {
+          //
+          // redirect to the list of users
+          console.log(`${this.newUser.name.first} ${this.newUser.name.last} was added to list.`); 
+          location.assign("/user-list");
+        }, 3000);
 
       }
       else
@@ -105,21 +105,10 @@ export class AddUserFormComponent implements OnInit {
           return null;
         }
     }
-  /*  
-    private validateUniqueEmail (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null>
+  
+    private validateUniqueEmail (control: AbstractControl): Observable<ValidationErrors | null>
     {
-        let emailAddress: string = control.value;
-
-        let error: boolean = this.service.checkIfEmailIsUnique(emailAddress);
-              
-        if ( error )
-        {
-          return { uniqueMailError: error };//returns only if true
-        }
-        else
-        {
-          return null;
-        }
+        return this.service.checkIfEmailIsUnique(control.value).pipe(map((result: boolean) => result ? null : {invalidAsync: true}));
     }
-*/
+
 }
