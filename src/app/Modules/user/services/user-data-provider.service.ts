@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { User } from '../../shared/Interfaces/user.interface';
 
 @Injectable()
@@ -172,13 +173,17 @@ export class UserDataProviderService {
 
 
   // ADD user functionality
-  public addNewUser( user: User ): void 
+  public addNewUser( user: User ): Observable<boolean>
   {
+    let isAdded: boolean = false;
     if ( user != undefined )
     {
       this.SupplementaryUsersArray.push(user);
       localStorage['storedUsers'] = JSON.stringify(this.SupplementaryUsersArray);
+      isAdded = true;
     }
+
+    return of(isAdded).pipe(delay(2000));
   }
 
   public checkIfEmailIsUnique (emailAddress: string): Observable<boolean>

@@ -5,6 +5,7 @@ import { UserDataProviderService } from 'src/app/Modules/user/services/user-data
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-add-user-form',
@@ -15,7 +16,9 @@ export class AddUserFormComponent implements OnInit {
 
     public newUser: User;
 
-    constructor(private service: UserDataProviderService, private _snackBar: MatSnackBar) 
+    constructor(private service: UserDataProviderService, 
+                private _snackBar: MatSnackBar,
+                private router: Router ) 
     { 
       // service.addNewUser(this.newUser);
     }
@@ -41,51 +44,63 @@ export class AddUserFormComponent implements OnInit {
                                     [ Validators.required, 
                                       Validators.email, 
                                       this.validateGmail, 
-                                      this.validateUniqueEmail 
+                                      // this.validateUniqueEmail.bind(this) 
                                     ] )
         });
 
     public onSubmit() 
     {
+      const formValue: any = this.AddUser.value;
       if ( this.AddUser.valid )
       {
         this.newUser =
         {
             userId: Date.now(), //creates a kind of unique id
             name: {
-                first: this.AddUser.value.name.first,
-                last: this.AddUser.value.name.last
+                first: formValue.name.first,
+                last: formValue.name.last
             },
-            age: Number.parseInt(this.AddUser.value.age),
-            isMale: this.AddUser.value.isMale,
-            company: this.AddUser.value.company ? this.AddUser.value.company : 'none',
-            department: this.AddUser.value.department ? this.AddUser.value.department : 'none',
-            photoUrl: this.AddUser.value.photoUrl ? this.AddUser.value.photoUrl : 'assets/user-photos/default.png',
-            email: this.AddUser.value.email
+            age: Number.parseInt(formValue.age),
+            isMale: formValue.isMale,
+            company: formValue.company ? formValue.company : 'none',
+            department: formValue.department ? formValue.department : 'none',
+            photoUrl: formValue.photoUrl ? formValue.photoUrl : 'assets/user-photos/default.png',
+            email: formValue.email
         }
 
         console.log(this.newUser);
-        this.service.addNewUser(this.newUser);
-        //
-        //show snack-bar
-        // openSnackBar("qwer");
-        this._snackBar.open(`User ${this.newUser.name.first} ${this.newUser.name.last} is added to the list`, "Dismiss", { duration: 5000, horizontalPosition: 'right', verticalPosition: 'top' });
+        let timeStart: number = Date.now();
+        console.log(`${Date.now() - timeStart}: Sending new user data to server.`)
+        this.service.addNewUser(this.newUser).subscribe(() => {
+          //
+          //show snack-bar
+          console.log(`${Date.now() - timeStart}: got acknowledgement from server.`);
+          this._snackBar.open(`User ${this.newUser.name.first} ${this.newUser.name.last} is added to the list`, 
+                            "Dismiss", { duration: 3000, horizontalPosition: 'right', 
+                            verticalPosition: 'top' });
+          setTimeout( () => {
+            //
+            // redirect to the list of users
+            console.log(`${Date.now() - timeStart}: Navigating to the List of users.`);
+            this.router.navigate(['/user-list']);
+          }, 3000);
+          
+        });
+        
+        
         //
         // wait 3 seconds
-        setTimeout( () => {
-          //
-          // redirect to the list of users
-          console.log(`${this.newUser.name.first} ${this.newUser.name.last} was added to list.`); 
-          location.assign("/user-list");
-        }, 3000);
+        
 
       }
       else
       {
         console.log("The form is invalid, please fill required fields.");
+        this.AddUser.markAllAsTouched();
       }
 
-      console.log(this.AddUser.controls.email.errors);
+      // console.log(this.AddUser.controls.email.errors);
+      console.log(this.AddUser.controls);
     }
 
 
