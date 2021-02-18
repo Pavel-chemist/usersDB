@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { User } from 'src/app/Modules/shared/Interfaces/user.interface';
 import { UserDataProviderService } from 'src/app/Modules/user/services/user-data-provider.service';
@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, of } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { CustomFormValidatorsComponent } from './custom-form-validators/custom-form-validators.component';
 
 @Component({
     selector: 'app-add-user-form',
@@ -14,12 +15,14 @@ import { Router } from '@angular/router';
 })
 export class AddUserFormComponent implements OnInit {
 
+    @ViewChild(CustomFormValidatorsComponent) customValidators: CustomFormValidatorsComponent;
+
     public newUser: User;
+    // public AddUser: FormGroup;
 
     constructor(private service: UserDataProviderService, 
                 private _snackBar: MatSnackBar,
-                private router: Router,
-                // private customValidators: AddUserFormValidationsComponent 
+                private router: Router
                 ) 
     { 
       // service.addNewUser(this.newUser);
@@ -28,6 +31,11 @@ export class AddUserFormComponent implements OnInit {
     ngOnInit(): void 
     { 
       
+    }
+
+    ngAfterViewInit(): void
+    {
+      console.log(`viewChild:`, this.customValidators);
     }
 
     public AddUser = new FormGroup(
@@ -47,7 +55,7 @@ export class AddUserFormComponent implements OnInit {
               [  //synchronous validators:
                 Validators.required,
                 Validators.email, 
-                this.validateGmail, 
+                this.validateGmail,
                 // this.customValidators.validateGmail
               ],
               [  //asynchronous validators:
@@ -55,6 +63,8 @@ export class AddUserFormComponent implements OnInit {
               ]
             )
         });
+
+      
 
     public onSubmit() 
     {

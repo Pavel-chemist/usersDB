@@ -15,13 +15,15 @@ import { SharedModule } from './Modules/shared/shared.module';
 
 import { UserListComponent } from './Modules/user/containers/user-list/user-list.component';
 import { AddUserFormComponent } from './route-components/add-user-form/add-user-form.component';
+import { CustomFormValidatorsComponent } from './route-components/add-user-form/custom-form-validators/custom-form-validators.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    AddUserFormComponent
+    AddUserFormComponent,
+    CustomFormValidatorsComponent
   ],
   imports: [
     BrowserModule,
