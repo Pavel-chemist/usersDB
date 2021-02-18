@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn,
 import { User } from 'src/app/Modules/shared/Interfaces/user.interface';
 import { UserDataProviderService } from 'src/app/Modules/user/services/user-data-provider.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -18,7 +18,9 @@ export class AddUserFormComponent implements OnInit {
 
     constructor(private service: UserDataProviderService, 
                 private _snackBar: MatSnackBar,
-                private router: Router ) 
+                private router: Router,
+                // private customValidators: AddUserFormValidationsComponent 
+                ) 
     { 
       // service.addNewUser(this.newUser);
     }
@@ -40,12 +42,18 @@ export class AddUserFormComponent implements OnInit {
             company: new FormControl(''),
             department: new FormControl(''),
             photoUrl: new FormControl(''),
-            email: new FormControl( '', 
-                                    [ Validators.required, 
-                                      Validators.email, 
-                                      this.validateGmail, 
-                                      // this.validateUniqueEmail.bind(this) 
-                                    ] )
+            email: new FormControl( 
+              '',   // <-- default form value
+              [  //synchronous validators:
+                Validators.required,
+                Validators.email, 
+                this.validateGmail, 
+                // this.customValidators.validateGmail
+              ],
+              [  //asynchronous validators:
+                this.validateUniqueEmail.bind(this)
+              ]
+            )
         });
 
     public onSubmit() 
@@ -70,7 +78,8 @@ export class AddUserFormComponent implements OnInit {
 
         console.log(this.newUser);
         let timeStart: number = Date.now();
-        console.log(`${Date.now() - timeStart}: Sending new user data to server.`)
+        console.log(`${Date.now() - timeStart}: Sending new user data to server.`);
+
         this.service.addNewUser(this.newUser).subscribe(() => {
           //
           //show snack-bar
@@ -79,6 +88,8 @@ export class AddUserFormComponent implements OnInit {
                             "Dismiss", { duration: 3000, horizontalPosition: 'right', 
                             verticalPosition: 'top' });
           setTimeout( () => {
+             //
+            // wait 3 seconds
             //
             // redirect to the list of users
             console.log(`${Date.now() - timeStart}: Navigating to the List of users.`);
@@ -86,11 +97,6 @@ export class AddUserFormComponent implements OnInit {
           }, 3000);
           
         });
-        
-        
-        //
-        // wait 3 seconds
-        
 
       }
       else
@@ -99,8 +105,8 @@ export class AddUserFormComponent implements OnInit {
         this.AddUser.markAllAsTouched();
       }
 
-      // console.log(this.AddUser.controls.email.errors);
-      console.log(this.AddUser.controls);
+      console.log(this.AddUser.controls.email.errors);
+      // console.log(this.AddUser.controls);
     }
 
 
@@ -109,7 +115,7 @@ export class AddUserFormComponent implements OnInit {
     {
         let endOfLine: string = control.value.slice(-10);
         let error: boolean = !(endOfLine === '@gmail.com');
-        // console.log(`validating mail domin: ${endOfLine}, error status: ${error}`);
+        // console.log(`validating mail domain: ${endOfLine}, error status: ${error}`);
        
         if ( error )
         {
@@ -123,7 +129,12 @@ export class AddUserFormComponent implements OnInit {
   
     private validateUniqueEmail (control: AbstractControl): Observable<ValidationErrors | null>
     {
-        return this.service.checkIfEmailIsUnique(control.value).pipe(map((result: boolean) => result ? null : {invalidAsync: true}));
+      console.log(`Validating email uniqueness`);
+        return this.service.checkIfEmailIsUnique(control.value).pipe(map((result: boolean) => {
+        console.log(`Result: "${result}"`);
+        
+        return result ? null : { uniqueMailError: true };
+        }));
     }
 
 }

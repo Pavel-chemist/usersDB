@@ -11,7 +11,52 @@ export class UserDataProviderService {
   private SupplementaryUsersArray: User[] = [];
   
 
-  public getUserData() 
+  public getUserData()
+  {
+    this.loadUserData();
+
+    return this.UsersArray;
+  }
+
+
+  // ADD user functionality
+  public addNewUser( user: User ): Observable<boolean>
+  {
+    let isAdded: boolean = false;
+    if ( user != undefined )
+    {
+      this.SupplementaryUsersArray.push(user);
+      localStorage['storedUsers'] = JSON.stringify(this.SupplementaryUsersArray);
+      isAdded = true;
+    }
+
+    return of(isAdded).pipe(delay(2000));
+  }
+
+  public checkIfEmailIsUnique (emailAddress: string): Observable<boolean>
+  {
+    let isUnique: boolean = true;
+    let foundElement: User | undefined;
+
+    if ( this.UsersArray == undefined )
+    {
+      this.loadUserData();
+    }
+
+    // console.log(`Searching for user with email "${emailAddress}" in "${this.UsersArray == undefined ? 'undefined' : 'Users'}" array:`);
+    
+    foundElement = this.UsersArray.find(user => user.email === emailAddress );
+    if ( foundElement != undefined )
+    {
+      isUnique = false;
+    }
+    console.log(`IsUnique: ${isUnique}`);
+    
+    return of(isUnique);
+  }
+
+
+  private loadUserData(): void
   {
     this.UsersArray =
     [
@@ -166,38 +211,7 @@ export class UserDataProviderService {
       {
         this.UsersArray.push(this.SupplementaryUsersArray[i]);
       }
-    }    
-
-    return this.UsersArray;
-  }
-
-
-  // ADD user functionality
-  public addNewUser( user: User ): Observable<boolean>
-  {
-    let isAdded: boolean = false;
-    if ( user != undefined )
-    {
-      this.SupplementaryUsersArray.push(user);
-      localStorage['storedUsers'] = JSON.stringify(this.SupplementaryUsersArray);
-      isAdded = true;
-    }
-
-    return of(isAdded).pipe(delay(2000));
-  }
-
-  public checkIfEmailIsUnique (emailAddress: string): Observable<boolean>
-  {
-    let isUnique: boolean = true;
-    let foundElement: User | undefined;
-
-    foundElement = this.UsersArray.find(user => user.email === emailAddress );
-    if ( foundElement != undefined )
-    {
-      isUnique = false;
-    }
-    
-    return of(isUnique);
+    } 
   }
 
 }
