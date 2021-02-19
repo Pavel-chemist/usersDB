@@ -15,7 +15,8 @@ import { SharedModule } from './Modules/shared/shared.module';
 
 import { UserListComponent } from './Modules/user/containers/user-list/user-list.component';
 import { AddUserFormComponent } from './route-components/add-user-form/add-user-form.component';
-import { CustomFormValidatorsComponent } from './route-components/add-user-form/custom-form-validators/custom-form-validators.component';
+import { ShownFormFieldsComponent } from './route-components/add-user-form/shown-form-fields/shown-form-fields.component';
+import { UserPIFieldsComponent } from './route-components/add-user-form/shown-form-fields/user-pi/user-pi-fields.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CustomFormValidatorsComponent } from './route-components/add-user-form/
     AppComponent,
     UserListComponent,
     AddUserFormComponent,
-    CustomFormValidatorsComponent
+    ShownFormFieldsComponent,
+    UserPIFieldsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,15 @@
+<p>user-pi works!</p>
+
+<div [formGroup]="PersonalInfo">
+    <mat-form-field class="user-form-text-field">
+        <mat-label>First Name: </mat-label>
+        <input matInput type="text" formControlName="first">
+        <mat-error>This is required field</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="user-form-text-field">
+        <mat-label>Last Name: </mat-label>
+        <input matInput type="text" formControlName="last">
+        <mat-error>This is required field</mat-error>
+    </mat-form-field>
+</div>

@@ -1,0 +1,60 @@
+<div [formGroup]="AddUser" >
+    <app-user-pi-fields>
+        <!-- Here are the fields of nested form -->
+    </app-user-pi-fields>
+    
+    <mat-form-field class="user-form-text-field">
+        <mat-label>Age:</mat-label>
+        <input matInput type="text" formControlName="age">
+        <mat-error *ngIf="AddUser.controls.age.hasError('required')">This is required field</mat-error>
+        <mat-error *ngIf="AddUser.controls.age.hasError('min')">Minimum age is 5</mat-error>
+        <mat-error *ngIf="AddUser.controls.age.hasError('max')">Maximum age is 120</mat-error>
+    </mat-form-field>
+
+    <div class="user-form-text-field">
+        <label>Gender:</label><br/>
+        <mat-radio-group aria-label="Gender:" formControlName="isMale" >
+            <mat-radio-button value="true">Male</mat-radio-button><br/>
+            <mat-radio-button value="false">Female</mat-radio-button>
+        </mat-radio-group>
+        <ng-container *ngIf="AddUser.controls.isMale.touched">
+            <mat-error *ngIf="AddUser.controls.isMale.hasError('required')">This is required field</mat-error>
+        </ng-container>
+    </div>
+
+    <mat-form-field class="user-form-text-field">
+        <mat-label>Email: </mat-label>
+        <input matInput type="text" formControlName="email">
+        <mat-error *ngIf="AddUser.controls.email.hasError('required')">This is required field</mat-error>
+        <mat-error *ngIf="AddUser.controls.email.hasError('email')">This should be proper email address</mat-error>
+        
+        <mat-error *ngIf="AddUser.controls.email.hasError('gmailError')">
+            <ng-container  *ngIf="!AddUser.controls.email.hasError('email')">Email should be in "gmail.com" domain</ng-container>
+        </mat-error>
+        
+        <mat-error *ngIf="AddUser.controls.email.hasError('uniqueMailError')">Email should be unique</mat-error>        
+    </mat-form-field>
+    
+    <mat-form-field class="user-form-text-field">
+    <mat-label>Company: </mat-label>
+        <input matInput type="text" formControlName="company">
+    </mat-form-field>
+    
+    <mat-form-field class="user-form-text-field">
+        <mat-label>Department: </mat-label>
+        <input matInput type="text" formControlName="department">
+    </mat-form-field>
+
+    <div class="user-form-text-field">
+        <label>Photo: </label>
+        <input type="file" formControlName="photoUrl">
+    </div>
+       
+    <!-- <div class="user-form-text-field">
+        <button mat-raised-button type="submit" (click)="onSubmit()">Add user</button>
+        
+    </div> -->
+    
+</div> 
+
+
