@@ -5,16 +5,16 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CustomValidatorsService } from 'src/app/Modules/user/services/custom-validators.service';
 import { UserDataProviderService } from 'src/app/Modules/user/services/user-data-provider.service';
-import { UserPIFieldsComponent } from './user-pi/user-pi-fields.component';
+import { UserPIFieldsComponent } from 'src/app/Modules/shared/components/user-pi/user-pi-fields.component';
 
 
 @Component({
-  selector: 'app-shown-form-fields',
-  templateUrl: './shown-form-fields.component.html',
-  styleUrls: ['./shown-form-fields.component.css']
+  selector: 'app-add-user-form',
+  templateUrl: './add-user-form.component.html',
+  styleUrls: ['./add-user-form.component.css']
 })
 
-export class ShownFormFieldsComponent implements OnInit 
+export class AddUserFormComponent implements OnInit 
 {
 	@ViewChild( UserPIFieldsComponent ) pInfo: UserPIFieldsComponent;
 
@@ -24,7 +24,7 @@ export class ShownFormFieldsComponent implements OnInit
   	}
 
 	ngAfterViewInit(): void {
-        console.log(`ShownFormFieldsComponent -- viewChild:`, this.pInfo);
+        console.log(`AddUserFormComponent -- viewChild:`, this.pInfo);
 		this.PersonalInfo = this.pInfo.PersonalInfo;
     }
 

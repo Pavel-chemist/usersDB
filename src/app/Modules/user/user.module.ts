@@ -7,6 +7,11 @@ import { SharedModule } from '../shared/shared.module';
 import { UserDataProviderService } from './services/user-data-provider.service';
 import { MatButtonModule } from '@angular/material/button';
 import { CustomValidatorsService } from './services/custom-validators.service';
+import { AddUserShellComponent } from './containers/add-user-shell/add-user-shell.component';
+import { AddUserFormComponent } from './components/add-user-form/add-user-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -14,17 +19,24 @@ import { CustomValidatorsService } from './services/custom-validators.service';
     declarations: [
         HeaderComponent,
         UsersGridComponent,
-        GridControlsComponent
+        GridControlsComponent,
+        AddUserShellComponent,
+        AddUserFormComponent
     ],
     imports: [
         CommonModule,
         SharedModule,
-        MatButtonModule
+        MatButtonModule,
+        MatInputModule,
+        MatRadioModule,
+        ReactiveFormsModule
     ],
     exports: [
         HeaderComponent,
         UsersGridComponent,
-        GridControlsComponent
+        GridControlsComponent,
+        AddUserShellComponent,
+        AddUserFormComponent
     ],
     providers: [UserDataProviderService, CustomValidatorsService]
 })

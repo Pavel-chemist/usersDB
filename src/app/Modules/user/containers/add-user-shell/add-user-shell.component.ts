@@ -3,16 +3,16 @@ import { User } from 'src/app/Modules/shared/Interfaces/user.interface';
 import { UserDataProviderService } from 'src/app/Modules/user/services/user-data-provider.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { ShownFormFieldsComponent } from './shown-form-fields/shown-form-fields.component';
+import { AddUserFormComponent } from '../../components/add-user-form/add-user-form.component';
 
 @Component({
-    selector: 'app-add-user-form',
-    templateUrl: './add-user-form.component.html',
-    styleUrls: ['./add-user-form.component.css']
+    selector: 'app-add-user-shell',
+    templateUrl: './add-user-shell.component.html',
+    styleUrls: ['./add-user-shell.component.css']
 })
-export class AddUserFormComponent implements OnInit {
+export class AddUserShellComponent implements OnInit {
 
-    @ViewChild(ShownFormFieldsComponent) form: ShownFormFieldsComponent;
+    @ViewChild(AddUserFormComponent) form: AddUserFormComponent;
 
     public newUser: User;
 
@@ -41,7 +41,7 @@ export class AddUserFormComponent implements OnInit {
                     last: piValue.last
                 },
                 age: Number.parseInt(formValue.age),
-                isMale: formValue.isMale,
+                isMale: formValue.isMale === "true",    //return boolean values instead of "true" and "false" strings
                 company: formValue.company ? formValue.company : 'none',
                 department: formValue.department ? formValue.department : 'none',
                 photoUrl: formValue.photoUrl ? formValue.photoUrl : 'assets/user-photos/default.png',
