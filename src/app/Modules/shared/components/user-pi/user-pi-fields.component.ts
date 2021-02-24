@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-user-pi-fields',
@@ -8,16 +9,25 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class UserPIFieldsComponent implements OnInit {
 
-  	constructor() { }
+	@Input() parentForm: FormGroup;
+	
 
-	ngOnInit(): void {
-	}
-
-  	public PersonalInfo: FormGroup = new FormGroup(
+	public PersonalInfo: FormGroup = new FormGroup(
     	{
     		first: new FormControl('', Validators.required),
       		last: new FormControl('', Validators.required)
     	}
 	);
+
+  	constructor() { }
+
+	ngOnInit(): void 
+	{
+		this.parentForm.addControl('personalNameInfo', this.PersonalInfo);
+	}
+
+  	
+
+	
 
 }

@@ -16,7 +16,7 @@ import { UserPIFieldsComponent } from 'src/app/Modules/shared/components/user-pi
 
 export class AddUserFormComponent implements OnInit 
 {
-	@ViewChild( UserPIFieldsComponent ) pInfo: UserPIFieldsComponent;
+	// @ViewChild( UserPIFieldsComponent ) pInfo: UserPIFieldsComponent;
 
   	constructor( private cValidators: CustomValidatorsService, private dataProvider: UserDataProviderService) { }
 
@@ -24,8 +24,7 @@ export class AddUserFormComponent implements OnInit
   	}
 
 	ngAfterViewInit(): void {
-        console.log(`AddUserFormComponent -- viewChild:`, this.pInfo);
-		this.PersonalInfo = this.pInfo.PersonalInfo;
+        console.log(`form: `, this.AddUser);
     }
 
 	public PersonalInfo: FormGroup; // <-- use viewChild

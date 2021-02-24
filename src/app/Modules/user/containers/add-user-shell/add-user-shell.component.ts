@@ -30,15 +30,13 @@ export class AddUserShellComponent implements OnInit {
     public onSubmit() {
         console.log(this.form.AddUser.value);
 		const formValue: any = this.form.AddUser.value;
-		console.log(this.form.PersonalInfo.value);
-		const piValue: any = this.form.PersonalInfo.value;
         if (this.form.AddUser.valid) {
             this.newUser =
             {
                 userId: Date.now(), //creates a kind of unique id
                 name: {
-                    first: piValue.first,
-                    last: piValue.last
+                    first: formValue.personalNameInfo.first,
+                    last: formValue.personalNameInfo.last
                 },
                 age: Number.parseInt(formValue.age),
                 isMale: formValue.isMale === "true",    //return boolean values instead of "true" and "false" strings
