@@ -1,11 +1,9 @@
-import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CustomValidatorsService } from 'src/app/Modules/user/services/custom-validators.service';
 import { UserDataProviderService } from 'src/app/Modules/user/services/user-data-provider.service';
-import { UserPIFieldsComponent } from 'src/app/Modules/shared/components/user-pi/user-pi-fields.component';
 
 
 @Component({
@@ -16,8 +14,6 @@ import { UserPIFieldsComponent } from 'src/app/Modules/shared/components/user-pi
 
 export class AddUserFormComponent implements OnInit 
 {
-	// @ViewChild( UserPIFieldsComponent ) pInfo: UserPIFieldsComponent;
-
   	constructor( private cValidators: CustomValidatorsService, private dataProvider: UserDataProviderService) { }
 
   	ngOnInit(): void {

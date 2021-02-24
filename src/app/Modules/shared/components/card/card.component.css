@@ -39,3 +39,10 @@
     display: block;
     margin-left: 16px;
 }
+
+.shared-card-edit-button
+{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}

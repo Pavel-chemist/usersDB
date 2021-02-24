@@ -9,4 +9,7 @@
         <p class="shared-card-description-field"><em>Department:</em> {{userData.department}}</p>
         <p class="shared-card-description-field"><em>email:</em> {{userData.email}}</p>
     </div>
+    <a mat-icon-button class="shared-card-edit-button" [routerLink]="['/edit-user', userData.userId]">
+        <mat-icon aria-hidden="false" aria-label="Edit user">edit</mat-icon>
+    </a>
 </mat-card>

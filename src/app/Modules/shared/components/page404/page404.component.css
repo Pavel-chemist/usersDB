@@ -1,0 +1,18 @@
+.error-404-block
+{
+    /* display: block; */
+    margin: 50px, auto;
+    padding: 30px;
+}
+
+.error-404-title
+{
+    font-size: 72px;
+    line-height: 72px;
+}
+
+.error-404-message
+{
+    font-size: 48px;
+    line-height: 48px;
+}
