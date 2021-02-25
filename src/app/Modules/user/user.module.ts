@@ -12,6 +12,8 @@ import { AddUserFormComponent } from './components/add-user-form/add-user-form.c
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditUserShellComponent } from './containers/edit-user-shell/edit-user-shell.component';
+import { UserRouterModule } from './user-router.module';
 
 
 
@@ -21,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         UsersGridComponent,
         GridControlsComponent,
         AddUserShellComponent,
-        AddUserFormComponent
+        AddUserFormComponent,
+        EditUserShellComponent
     ],
     imports: [
         CommonModule,
@@ -29,14 +32,16 @@ import { ReactiveFormsModule } from '@angular/forms';
         MatButtonModule,
         MatInputModule,
         MatRadioModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        UserRouterModule
     ],
     exports: [
         HeaderComponent,
         UsersGridComponent,
         GridControlsComponent,
         AddUserShellComponent,
-        AddUserFormComponent
+        AddUserFormComponent,
+        UserRouterModule
     ],
     providers: [UserDataProviderService, CustomValidatorsService]
 })

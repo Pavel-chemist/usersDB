@@ -27,10 +27,12 @@ export class AddUserShellComponent implements OnInit {
     }
 
 
-    public onSubmit() {
+    public onSubmit() 
+    {
         console.log(this.form.AddUser.value);
 		const formValue: any = this.form.AddUser.value;
-        if (this.form.AddUser.valid) {
+        if (this.form.AddUser.valid) 
+        {
             this.newUser =
             {
                 userId: Date.now(), //creates a kind of unique id

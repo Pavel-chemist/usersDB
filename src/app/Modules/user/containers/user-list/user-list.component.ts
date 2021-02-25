@@ -14,7 +14,7 @@ export class UserListComponent implements OnInit {
 
 	constructor(service: UserDataProviderService ) 
 	{ 
-		this.users = service.getUserData();
+		this.users = service.getAllUsers();
 		this.revealAll(); //using this method to avoid code duplication
 		console.log('users data have been loaded');    
 	}

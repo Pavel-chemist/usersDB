@@ -19,7 +19,7 @@ export class UsersGridComponent implements OnInit {
   private routedNameId: number = 0;
 
   constructor(service: UserDataProviderService) {
-    this.users = service.getUserData();
+    this.users = service.getAllUsers();
   }
 
   ngOnInit(): void {

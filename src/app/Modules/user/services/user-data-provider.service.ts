@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 import { User } from '../../shared/Interfaces/user.interface';
 
 @Injectable()
@@ -15,9 +15,15 @@ export class UserDataProviderService
     private UsersArray: User[] = [];
     private SupplementaryUsersArray: User[] = [];
 
-    public getUserData(): User[] 
+    public getAllUsers(): User[] 
     {
         return this.UsersArray;
+    }
+
+    public getSingleUser( id: any ): any
+    {        
+        let foundUser: any = this.UsersArray.find(user => user.userId === +id);
+        return of(foundUser);
     }
 
 
