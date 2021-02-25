@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap, take } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs/operators';
 import { User } from 'src/app/Modules/shared/Interfaces/user.interface';
 import { UserDataProviderService } from '../../services/user-data-provider.service';
 
@@ -16,7 +15,6 @@ export class EditUserShellComponent implements OnInit {
 
 	constructor(
 		private route: ActivatedRoute,
-		// private router: Router,
 		private service: UserDataProviderService
 	) { }
 

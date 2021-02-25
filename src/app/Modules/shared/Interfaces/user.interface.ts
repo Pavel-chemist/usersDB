@@ -1,6 +1,8 @@
-export interface User {
+export interface User 
+{
     userId: number;
-    name: {
+    name: 
+    {
         first: string;
         last: string;
     },

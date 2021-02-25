@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -21,9 +21,22 @@ export class AddUserFormComponent implements OnInit
         console.log('Init User', this.user);
   	}
 
-    // TODO: Look AT ME!!!
-    // ngOnChanges(): void {
-    // }
+    ngOnChanges( /* changes: SimpleChanges */ ): void 
+    {
+        console.log( 'user data is fetched:' );
+        console.log('user data:', this.user);
+        let intermediateUserObject: any =
+        {
+            age: this.user.age,
+            isMale: this.user.isMale,
+            company: this.user.company,
+            department: this.user.department,
+            photoUrl: '',
+            email: this.user.email
+        }
+
+        this.AddUser.patchValue(intermediateUserObject);
+    }
 
 	ngAfterViewInit(): void {
         console.log(`form: `, this.AddUser);
