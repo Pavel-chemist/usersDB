@@ -22,10 +22,10 @@ export class EditUserShellComponent implements OnInit {
 
 	ngOnInit(): void 
 	{ 
-		this.user$ = this.route.paramMap.pipe(
-			switchMap((params: ParamMap) =>
-			  	this.service.getSingleUser(params.get('id')))
-		);
+		// this.user$ = this.route.paramMap.pipe(
+		// 	switchMap((params: ParamMap) =>
+		// 	  	this.service.getSingleUser(params.get('id')))
+		// );
 	}
 
 	public onSubmit(): void

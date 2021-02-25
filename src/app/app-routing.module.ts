@@ -9,7 +9,7 @@ const routes: Routes =
 [
   { path: 'user-list', component: UserListComponent },
   { path: 'add-user-form', component: AddUserShellComponent },
-  { path: 'edit-user', component: EditUserShellComponent },
+  { path: 'edit-user/:id', component: EditUserShellComponent },
   { path: '', redirectTo: '/user-list', pathMatch: 'full' },
   { path: '**', component: Page404Component }
 ];

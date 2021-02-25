@@ -13,9 +13,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditUserShellComponent } from './containers/edit-user-shell/edit-user-shell.component';
-import { UserRouterModule } from './user-router.module';
-
-
 
 @NgModule({
     declarations: [
@@ -33,7 +30,6 @@ import { UserRouterModule } from './user-router.module';
         MatInputModule,
         MatRadioModule,
         ReactiveFormsModule,
-        UserRouterModule
     ],
     exports: [
         HeaderComponent,
@@ -41,7 +37,6 @@ import { UserRouterModule } from './user-router.module';
         GridControlsComponent,
         AddUserShellComponent,
         AddUserFormComponent,
-        UserRouterModule
     ],
     providers: [UserDataProviderService, CustomValidatorsService]
 })
