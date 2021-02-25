@@ -20,10 +20,10 @@ export class UserDataProviderService
         return this.UsersArray;
     }
 
-    public getSingleUser( id: any ): any
+    public getSingleUser( id: any ): Observable<any>
     {        
         let foundUser: any = this.UsersArray.find(user => user.userId === +id);
-        return of(foundUser);
+        return of(foundUser).pipe(delay(1000));
     }
 
 

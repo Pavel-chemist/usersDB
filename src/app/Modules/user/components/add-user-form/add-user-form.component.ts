@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { User } from 'src/app/Modules/shared/Interfaces/user.interface';
 import { CustomValidatorsService } from 'src/app/Modules/user/services/custom-validators.service';
 import { UserDataProviderService } from 'src/app/Modules/user/services/user-data-provider.service';
-
 
 @Component({
   selector: 'app-add-user-form',
@@ -14,10 +14,16 @@ import { UserDataProviderService } from 'src/app/Modules/user/services/user-data
 
 export class AddUserFormComponent implements OnInit 
 {
+    @Input() user: User;
   	constructor( private cValidators: CustomValidatorsService, private dataProvider: UserDataProviderService) { }
 
   	ngOnInit(): void {
+        console.log('Init User', this.user);
   	}
+
+    // TODO: Look AT ME!!!
+    // ngOnChanges(): void {
+    // }
 
 	ngAfterViewInit(): void {
         console.log(`form: `, this.AddUser);
