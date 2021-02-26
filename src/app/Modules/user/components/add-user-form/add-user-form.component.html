@@ -15,8 +15,8 @@
     <div class="user-form-text-field">
         <label>Gender:</label><br/>
         <mat-radio-group aria-label="Gender:" formControlName="isMale" >
-            <mat-radio-button value="true">Male</mat-radio-button><br/>
-            <mat-radio-button value="false">Female</mat-radio-button>
+            <mat-radio-button value="male">Male</mat-radio-button><br/>
+            <mat-radio-button value="female">Female</mat-radio-button>
         </mat-radio-group>
         <ng-container *ngIf="AddUser.controls.isMale.touched">
             <mat-error *ngIf="AddUser.controls.isMale.hasError('required')">This is required field</mat-error>

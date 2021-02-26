@@ -51,7 +51,7 @@ export class UserDataProviderService
         if (foundElement != undefined) {
             isUnique = false;
         }
-        console.log(`IsUnique: ${isUnique}`);
+        // console.log(`IsUnique: ${isUnique}`);
 
         return of(isUnique);
     }

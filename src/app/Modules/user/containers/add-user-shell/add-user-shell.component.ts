@@ -41,7 +41,7 @@ export class AddUserShellComponent implements OnInit {
                     last: formValue.personalNameInfo.last
                 },
                 age: Number.parseInt(formValue.age),
-                isMale: formValue.isMale === "true",    //return boolean values instead of "true" and "false" strings
+                isMale: formValue.isMale === "male",    //return boolean values instead of "male" and "female" strings
                 company: formValue.company ? formValue.company : 'none',
                 department: formValue.department ? formValue.department : 'none',
                 photoUrl: formValue.photoUrl ? formValue.photoUrl : 'assets/user-photos/default.png',

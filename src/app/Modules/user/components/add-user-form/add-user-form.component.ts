@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,29 +18,35 @@ export class AddUserFormComponent implements OnInit
   	constructor( private cValidators: CustomValidatorsService, private dataProvider: UserDataProviderService) { }
 
   	ngOnInit(): void {
-        console.log('Init User', this.user);
+        console.log('1: Init User', this.user);
   	}
 
-    ngOnChanges( /* changes: SimpleChanges */ ): void 
+    ngOnChanges(): void 
     {
-        console.log( 'user data is fetched:' );
-        console.log('user data:', this.user);
-        let intermediateUserObject: any =
+        console.log( '3: user data is fetched:' );
+        console.log('4: user data:', this.user);
+        if ( this.user != undefined )
         {
-            age: this.user.age,
-            isMale: this.user.isMale,
-            company: this.user.company,
-            department: this.user.department,
-            photoUrl: '',
-            email: this.user.email
+            let intermediateUserObject: any =
+            {
+                age: this.user.age,
+                isMale: this.user.isMale ? "male" : "female",
+                company: this.user.company,
+                department: this.user.department,
+                photoUrl: '',
+                email: this.user.email,
+                personalNameInfo:
+                {
+                    first: this.user.name.first,
+                    last: this.user.name.last
+                }
+            }
+            this.AddUser.patchValue(intermediateUserObject);
+            console.log(`5: Form after value patching:`, this.AddUser);
         }
-
-        this.AddUser.patchValue(intermediateUserObject);
     }
 
-	ngAfterViewInit(): void {
-        console.log(`form: `, this.AddUser);
-    }
+	ngAfterViewInit(): void { }
 
 	public PersonalInfo: FormGroup; // <-- use viewChild
 
@@ -66,14 +72,14 @@ export class AddUserFormComponent implements OnInit
 
     private validateUniqueEmail(control: AbstractControl): Observable<ValidationErrors | null> 
     {
-        console.log(`Validating email uniqueness`);
-        console.log(`service: `, this.dataProvider );
+        /* console.log(`Validating email uniqueness`);
+        console.log(`service: `, this.dataProvider ); */
 
         return this.dataProvider.checkIfEmailIsUnique(control.value)
             .pipe(
                 map((result: boolean) => 
               {
-                    console.log(`Result: "${result}"`);
+                    // console.log(`Result: "${result}"`);
                     return result ? null : { uniqueMailError: true };
                 })
             );
