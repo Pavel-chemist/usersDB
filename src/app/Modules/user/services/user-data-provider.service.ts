@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { Observable } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { User } from '../../shared/Interfaces/user.interface';
 
 @Injectable()
@@ -12,17 +11,21 @@ export class UserDataProviderService
         this.loadUserData();
     }
 
-    private UsersArray: User[] = [];
+    private usersArray: User[] = [];
     private SupplementaryUsersArray: User[] = [];
+
+    private editedUserId: number;   //this is just to exclude user under edit from unique email validation
+    
 
     public getAllUsers(): User[] 
     {
-        return this.UsersArray;
+        return this.usersArray;
     }
 
     public getSingleUser( id: any ): Observable<any>
-    {        
-        let foundUser: any = this.UsersArray.find(user => user.userId === +id);
+    { 
+        this.editedUserId = +id; //init
+        let foundUser: any = this.usersArray.find(user => user.userId === +id);
         return of(foundUser).pipe(delay(1000));
     }
 
@@ -33,7 +36,7 @@ export class UserDataProviderService
         let isAdded: boolean = false;
         if (user != undefined) 
         {
-            this.UsersArray.push(user);
+            this.usersArray.push(user);
             this.SupplementaryUsersArray.push(user);
             localStorage['storedUsers'] = JSON.stringify(this.SupplementaryUsersArray);
             isAdded = true;
@@ -42,16 +45,29 @@ export class UserDataProviderService
         return of(isAdded).pipe(delay(2000));
     }
 
+    // EDIT user functionality
+    public updateUser(user: User): Observable<boolean>
+    {
+        // let id: number = user.userId; //
+        let editIndex: number = this.usersArray.findIndex(element => element.userId === user.userId );
+        console.log( `DataProviderService: update user with id=${user.userId}, which has the index ${editIndex}.`);
+        this.usersArray[editIndex] = user;
+        localStorage['storedUsers'] = JSON.stringify(this.usersArray.filter(element => element.userId > 10 )); //only users from local storage can be permanently updated
+
+        return of(true).pipe(delay(1000)); //plug simulating delayed server response
+    }
+
     public checkIfEmailIsUnique(emailAddress: string): Observable<boolean> 
     {
         let isUnique: boolean = true;
         let foundElement: User | undefined;
 
-        foundElement = this.UsersArray.find(user => user.email === emailAddress);
-        if (foundElement != undefined) {
+        foundElement = this.usersArray.find(user => user.email === emailAddress);
+        if (foundElement != undefined && foundElement.userId != this.editedUserId ) //there is no such email or it is the email under edit
+        {
             isUnique = false;
         }
-        // console.log(`IsUnique: ${isUnique}`);
+        console.log(`Email IsUnique: ${isUnique}`);
 
         return of(isUnique);
     }
@@ -59,7 +75,7 @@ export class UserDataProviderService
 
     private loadUserData(): void 
     {
-        this.UsersArray =
+        this.usersArray =
         [
             {
                 userId: 1,
@@ -211,7 +227,7 @@ export class UserDataProviderService
             
             for ( const user of this.SupplementaryUsersArray )
             {
-                this.UsersArray.push(user);
+                this.usersArray.push(user);
             }
         }
     }

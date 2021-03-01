@@ -61,11 +61,11 @@ export class AddUserFormComponent implements OnInit
             [  //synchronous validators:
                 Validators.required,
                 Validators.email,
-                this.cValidators.validateGmail,
-                // this.customValidators.validateGmail
+                this.cValidators.validateGmail
             ],
             [  //asynchronous validators:
                 this.validateUniqueEmail.bind(this)
+                // this.cValidators.validateUniqueEmail.bind(this)
             ]
         )
     });
@@ -73,7 +73,7 @@ export class AddUserFormComponent implements OnInit
     private validateUniqueEmail(control: AbstractControl): Observable<ValidationErrors | null> 
     {
         /* console.log(`Validating email uniqueness`);
-        console.log(`service: `, this.dataProvider ); */
+        console.log(`service: `, this.dataProvider );  */
 
         return this.dataProvider.checkIfEmailIsUnique(control.value)
             .pipe(

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { UserDataProviderService } from './user-data-provider.service';
 /* import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserDataProviderService } from './user-data-provider.service'; */
@@ -10,7 +13,7 @@ import { UserDataProviderService } from './user-data-provider.service'; */
 
 export class CustomValidatorsService {
 
-    constructor(/* private service: UserDataProviderService */) { }
+    constructor(private service: UserDataProviderService) { }
 
     public validateGmail(control: AbstractControl): ValidationErrors | null {
         let endOfLine: string = control.value.slice(-10);
@@ -26,7 +29,7 @@ export class CustomValidatorsService {
         }
     }
 
-    /* public validateUniqueEmail(control: AbstractControl): Observable<ValidationErrors | null> 
+    public validateUniqueEmail(control: AbstractControl): Observable<ValidationErrors | null> 
     {
         console.log(`Validating email uniqueness`);
         console.log(`service: `, this.service );
@@ -39,6 +42,6 @@ export class CustomValidatorsService {
                     return result ? null : { uniqueMailError: true };
                 })
             );
-    } */
+    }
 
 }
