@@ -9,8 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class UserPIFieldsComponent implements OnInit {
 
-	@Input() parentForm: FormGroup;
-	
+	@Input() parentForm: FormGroup;	
 
 	public PersonalInfo: FormGroup = new FormGroup(
     	{

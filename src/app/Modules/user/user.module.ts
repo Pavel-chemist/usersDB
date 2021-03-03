@@ -6,6 +6,7 @@ import { GridControlsComponent } from './components/grid-controls/grid-controls.
 import { SharedModule } from '../shared/shared.module';
 import { UserDataProviderService } from './services/user-data-provider.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CustomValidatorsService } from './services/custom-validators.service';
 import { AddUserShellComponent } from './containers/add-user-shell/add-user-shell.component';
 import { AddUserFormComponent } from './components/add-user-form/add-user-form.component';
@@ -29,6 +30,7 @@ import { EditUserShellComponent } from './containers/edit-user-shell/edit-user-s
         MatButtonModule,
         MatInputModule,
         MatRadioModule,
+        MatProgressSpinnerModule,
         ReactiveFormsModule,
     ],
     exports: [

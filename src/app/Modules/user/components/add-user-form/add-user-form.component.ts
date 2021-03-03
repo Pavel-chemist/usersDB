@@ -15,7 +15,10 @@ import { UserDataProviderService } from 'src/app/Modules/user/services/user-data
 export class AddUserFormComponent implements OnInit 
 {
     @Input() user: User;
-  	constructor( private cValidators: CustomValidatorsService, private dataProvider: UserDataProviderService) { }
+  	
+    
+
+    constructor( private cValidators: CustomValidatorsService, private dataProvider: UserDataProviderService) { }
 
   	ngOnInit(): void {
         console.log('1: Init User', this.user);
@@ -48,7 +51,7 @@ export class AddUserFormComponent implements OnInit
 
 	ngAfterViewInit(): void { }
 
-	public PersonalInfo: FormGroup; // <-- use viewChild
+	
 
   	public AddUser: FormGroup = new FormGroup(
     {

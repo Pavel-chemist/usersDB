@@ -4,4 +4,21 @@
     margin: auto;
     background-color: #f0f0f0;
     padding: 16px;
+    position: relative;
+}
+
+.edit-user-wait-spinner
+{
+    z-index: 1;
+    position: absolute;
+    top: 150px;
+    left: 200px;
+}
+
+.edit-user-submit-spinner
+{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }

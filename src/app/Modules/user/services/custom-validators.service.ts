@@ -3,9 +3,6 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserDataProviderService } from './user-data-provider.service';
-/* import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { UserDataProviderService } from './user-data-provider.service'; */
 
 @Injectable({
   providedIn: 'root'

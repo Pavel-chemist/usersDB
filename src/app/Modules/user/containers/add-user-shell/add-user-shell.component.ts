@@ -15,6 +15,7 @@ export class AddUserShellComponent implements OnInit {
     @ViewChild(AddUserFormComponent) form: AddUserFormComponent;
 
     public newUser: User;
+    public dataIsSubmitted: boolean = false;
 
     constructor(private service: UserDataProviderService,
         private _snackBar: MatSnackBar,
@@ -55,6 +56,8 @@ export class AddUserShellComponent implements OnInit {
             let timeStart: number = Date.now();
             console.log(`${Date.now() - timeStart}: Sending new user data to server.`);
 
+            this.dataIsSubmitted = true;
+
             this.service.addNewUser(this.newUser).subscribe(() => {
                 //show snack-bar
                 console.log(`${Date.now() - timeStart}: got acknowledgement from server.`);
@@ -67,6 +70,7 @@ export class AddUserShellComponent implements OnInit {
 					// wait 3 seconds, and redirect to the list of users
                     console.log(`${Date.now() - timeStart}: Navigating to the List of users.`);
                     this.router.navigate(['/user-list']);
+                    this.dataIsSubmitted = false;
                 }, 3000);
 
             });

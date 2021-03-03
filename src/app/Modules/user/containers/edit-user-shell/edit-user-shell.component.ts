@@ -16,6 +16,8 @@ export class EditUserShellComponent implements OnInit {
 	@ViewChild(AddUserFormComponent) form: AddUserFormComponent;
 	
 	public user: User;
+    public dataIsLoaded: boolean = false;
+    public dataIsSubmitted: boolean = false;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -31,6 +33,7 @@ export class EditUserShellComponent implements OnInit {
 			.subscribe(data => {				//as service returns an observable, subscribe to it
 				this.user = data;				//after receiving response, initiate this.user
 				console.log('User', data);
+                this.dataIsLoaded = true;
 			});
 	}
 
@@ -64,7 +67,7 @@ export class EditUserShellComponent implements OnInit {
             console.log(`${Date.now() - timeStart}: Sending new user data to server.`);
 
 		//	this.service.updateUser(this.user);
-
+            this.dataIsSubmitted = true;
             this.service.updateUser(this.user).subscribe(() => {
                 //show snack-bar
                 console.log(`${Date.now() - timeStart}: got acknowledgement from server.`);
@@ -77,6 +80,7 @@ export class EditUserShellComponent implements OnInit {
 					// wait 3 seconds, and redirect to the list of users
                     console.log(`${Date.now() - timeStart}: Navigating to the List of users.`);
                     this.router.navigate(['/user-list']);
+                    this.dataIsSubmitted = false;
                 }, 3000);
 
             });
