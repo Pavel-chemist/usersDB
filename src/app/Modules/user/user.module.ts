@@ -36,9 +36,7 @@ import { EditUserShellComponent } from './containers/edit-user-shell/edit-user-s
     exports: [
         HeaderComponent,
         UsersGridComponent,
-        GridControlsComponent,
-        AddUserShellComponent,
-        AddUserFormComponent,
+        GridControlsComponent
     ],
     providers: [UserDataProviderService, CustomValidatorsService]
 })

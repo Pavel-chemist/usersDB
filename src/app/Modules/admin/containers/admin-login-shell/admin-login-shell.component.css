@@ -1,0 +1,23 @@
+.admin-form-container
+{
+    width: 500px;
+    margin: auto;
+    background-color: #f0f0f0;
+    padding: 16px;
+}
+
+.login-form-text-field
+{
+    display: block;
+    width: 90%;
+    margin: 8px 16px 0px 16px;
+    background-color: #f7f7f7;
+}
+
+.admin-login-spinner
+{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

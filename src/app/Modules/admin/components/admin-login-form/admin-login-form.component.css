@@ -1,0 +1,14 @@
+.login-form-text-field
+{
+    display: block;
+    width: 90%;
+    margin: 8px 16px 0px 16px;
+    background-color: #f7f7f7;
+}
+
+.login-form-title
+{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}

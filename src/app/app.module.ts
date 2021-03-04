@@ -13,6 +13,7 @@ import { UserModule } from './Modules/user/user.module';
 import { SharedModule } from './Modules/shared/shared.module';
 
 import { UserListComponent } from './Modules/user/containers/user-list/user-list.component';
+import { AdminModule } from './Modules/admin/admin.module';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { UserListComponent } from './Modules/user/containers/user-list/user-list
     MatSnackBarModule,
 //  internal feature modules:
     UserModule,     
-    SharedModule
+    SharedModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

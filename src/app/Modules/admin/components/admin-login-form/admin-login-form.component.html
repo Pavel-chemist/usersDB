@@ -1,0 +1,14 @@
+<p class="login-form-title">Enter your login and password:</p>
+
+<div [formGroup]="loginFields">
+    <mat-form-field class="login-form-text-field">
+        <mat-label>Login:</mat-label>
+        <input matInput type="text" formControlName="login">
+        <mat-error *ngIf="loginFields.controls.login.hasError('required')">This is required field</mat-error>        
+    </mat-form-field>
+    <mat-form-field class="login-form-text-field">
+        <mat-label>Password:</mat-label>
+        <input matInput type="password" formControlName="password">
+        <mat-error *ngIf="loginFields.controls.password.hasError('required')">This is required field</mat-error>        
+    </mat-form-field>
+</div>

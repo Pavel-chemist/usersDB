@@ -13,16 +13,16 @@ import { Page404Component } from './components/page404/page404.component';
 
 
 @NgModule({
-  declarations: [CardComponent, UserPIFieldsComponent, Page404Component],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    RouterModule
-  ],
-  exports: [CardComponent, UserPIFieldsComponent, Page404Component]
+	declarations: [CardComponent, UserPIFieldsComponent, Page404Component ],
+	imports: [
+		CommonModule,
+		MatCardModule,
+		MatInputModule,
+		MatIconModule,
+		MatButtonModule,
+		ReactiveFormsModule,
+		RouterModule
+	],
+	exports: [CardComponent, UserPIFieldsComponent, Page404Component]
 })
 export class SharedModule { }
