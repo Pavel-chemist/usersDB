@@ -1,0 +1,12 @@
+.navbar
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.link-like-button
+{
+    color: #0000ff;
+    text-decoration: underline;
+    cursor: pointer;
+}

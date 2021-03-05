@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Admin } from '../admin.interface';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { Admin, Creds } from '../admin.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,17 +16,32 @@ export class LoginCheckerService {
 			login: "admin",
 			password: "zzz",
 			nickName: "GreatOverlord"
+		},
+		{
+			id: 2,
+			login: "superadmin",
+			password: "asd",
+			nickName: "Pavel-chemist"
 		}
 	];
 
 	constructor() { }
 
-	public checkCredentials(creds: { login: string; password: string; } ): boolean
+	public checkCredentials(creds: Creds ): Observable<boolean>
 	{
 		console.log("checking credentials...");
 		console.log(creds);
-		return true;
-	}
 
+		let foundAdmin: Admin | undefined = this.admins.find( admin => admin.login === creds.login && admin.password === creds.password );
+
+		console.log('found admin is: ', foundAdmin);
+
+		if (!!foundAdmin)
+		{
+			localStorage['signedAdmin'] = JSON.stringify({ adminId: foundAdmin.id });
+		}
+
+		return of(!!foundAdmin).pipe(delay(1000));
+	}
 
 }

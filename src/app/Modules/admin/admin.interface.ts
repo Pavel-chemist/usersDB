@@ -5,3 +5,9 @@ export interface Admin
     password: string;
     nickName: string;
 }
+
+export interface Creds
+{
+    login: string;
+    password: string;
+}

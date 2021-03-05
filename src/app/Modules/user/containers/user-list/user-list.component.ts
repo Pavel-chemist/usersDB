@@ -46,6 +46,13 @@ export class UserListComponent implements OnInit {
 		} 
   	}
 
+	public onSignOut(): void
+	{
+		console.log('admin tried to sign out');
+		localStorage.removeItem('signedAdmin');
+	}
+
+
 	private get males()
 	{
 		console.log(this.visibleItems);

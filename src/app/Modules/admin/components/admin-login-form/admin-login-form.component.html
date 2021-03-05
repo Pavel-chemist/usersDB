@@ -1,5 +1,7 @@
 <p class="login-form-title">Enter your login and password:</p>
 
+<p class="login-form-error" *ngIf="invalidCredentials">Incorrect sign in information</p>
+
 <div [formGroup]="loginFields">
     <mat-form-field class="login-form-text-field">
         <mat-label>Login:</mat-label>

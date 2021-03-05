@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditUserShellComponent } from './containers/edit-user-shell/edit-user-shell.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { EditUserShellComponent } from './containers/edit-user-shell/edit-user-s
         MatRadioModule,
         MatProgressSpinnerModule,
         ReactiveFormsModule,
+        AppRoutingModule
     ],
     exports: [
         HeaderComponent,

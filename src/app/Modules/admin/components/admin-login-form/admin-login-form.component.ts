@@ -8,6 +8,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AdminLoginFormComponent implements OnInit {
 
+	public invalidCredentials: boolean;
+
 	constructor() { }
 
 	ngOnInit(): void {

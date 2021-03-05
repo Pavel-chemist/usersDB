@@ -12,3 +12,9 @@
     font-size: 20px;
     font-weight: bold;
 }
+
+.login-form-error
+{
+    color: #ff0000;
+    margin-left: 16px;
+}
