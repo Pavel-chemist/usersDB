@@ -19,49 +19,44 @@ export class AdminLoginShellComponent implements OnInit {
 	constructor( private service: LoginCheckerService,
 				private router: Router ) { }
 
-	ngOnInit(): void 
-	{
-		this.autoRouteWhenSigned();
-	}
+	ngOnInit(): void { }
 
 	public onLogin()
 	{
-		console.log(`Submitting login and password info`);
-		this.formValue = this.loginForm.loginFields.value;
-		console.log(this.formValue);
-		// let call: boolean = this.service.checkCredentials(this.formValue);
-
-		this.service.checkCredentials(this.formValue).subscribe(( isFound: boolean ) =>
+		
+		console.log('The form status: ', this.loginForm.loginFields.status);
+		if ( this.loginForm.loginFields.status === 'VALID')
 		{
-			console.log('test', isFound );
-			if ( isFound )
-			{
-				console.log("creds are good");
-				this.loginForm.invalidCredentials = false;
-				//route to the list of users
-				this.router.navigate(['/user-list']);
+			console.log(`Submitting login and password info`);
+			this.formValue = this.loginForm.loginFields.value;
+			console.log(this.formValue);
+			// let call: boolean = this.service.checkCredentials(this.formValue);
 
-			}
-			else
+			this.service.checkCredentials(this.formValue).subscribe(( isFound: boolean ) =>
 			{
-				console.log("no such admin found");
-				this.loginForm.loginFields.markAllAsTouched();
-				this.loginForm.invalidCredentials = true;
-				this.loginForm.loginFields.patchValue( { password: ''});
-			}
-		});		
-	}
+				console.log('test', isFound );
+				if ( isFound )
+				{
+					console.log("creds are good");
+					this.loginForm.invalidCredentials = false;
+					//route to the list of users
+					this.router.navigate(['/user-list']);
 
-	private autoRouteWhenSigned() : void
-	{
-		let storedAdminInfo: { adminId: number; };
-	
-		if ( localStorage['signedAdmin'] )
+				}
+				else
+				{
+					console.log("no such admin found");
+					// this.loginForm.loginFields.markAllAsTouched();
+					this.loginForm.invalidCredentials = true;
+					this.loginForm.loginFields.patchValue( { password: ''});
+				}
+			});	
+		}
+		else
 		{
-			storedAdminInfo = JSON.parse(localStorage['signedAdmin']);
-			console.log(`Admin with id=${storedAdminInfo.adminId} is already signed in on this machine.`);
-			this.router.navigate(['/user-list']);
-		}		
+			this.loginForm.loginFields.patchValue( { password: ''});
+			this.loginForm.loginFields.markAllAsTouched();
+		}
 	}
 
 }

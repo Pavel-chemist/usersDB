@@ -49,7 +49,7 @@ export class LoginCheckerService {
 
 		let adminNickName: string | undefined = this.admins.find( admin => admin.id === id)?.nickName;
 
-		console.log('found nockname: ', adminNickName);
+		console.log('found nickname: ', adminNickName);
 
 		return of(adminNickName).pipe(delay(1000));
 	}

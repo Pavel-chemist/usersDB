@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginCheckerService } from './services/login-checker.service';
-import { AdminNameResolver } from './admin-name.resolver';
+import { AdminAccessGuard } from './admin-access.guard';
 
 
 
@@ -27,7 +27,7 @@ import { AdminNameResolver } from './admin-name.resolver';
     providers: 
 	[
 		LoginCheckerService,
-		AdminNameResolver
+		AdminAccessGuard
 	]
 })
 export class AdminModule { }

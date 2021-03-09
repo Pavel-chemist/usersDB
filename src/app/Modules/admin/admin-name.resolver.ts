@@ -5,14 +5,19 @@ import {
 	ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { LoginCheckerService } from './services/login-checker.service';
 
 @Injectable()
 
 export class AdminNameResolver implements Resolve<boolean> 
 {
-	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> 
+	constructor( private service: LoginCheckerService ){}
+
+	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> 
 	{
 		console.log('resolver is run');
-		return of(true);
+
+		let id: number = JSON.parse(localStorage['signedAdmin']).adminId;
+		return this.service.getUserNameById(id);
 	}
 }

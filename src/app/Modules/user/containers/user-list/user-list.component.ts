@@ -23,7 +23,11 @@ export class UserListComponent implements OnInit {
 
 	ngOnInit(): void 
 	{
-		this.activatedRoute.data.subscribe( );
+		this.activatedRoute.data.subscribe( (data: any) =>
+		{
+			console.log('data from resolver: ', data );
+			this.adminNickName = data.adminNickName;	
+		});
 	}
 
 	public hideFemales(): void
