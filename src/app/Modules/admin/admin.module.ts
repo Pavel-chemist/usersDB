@@ -5,6 +5,8 @@ import { AdminLoginFormComponent } from './components/admin-login-form/admin-log
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginCheckerService } from './services/login-checker.service';
+import { AdminNameResolver } from './admin-name.resolver';
 
 
 
@@ -21,6 +23,11 @@ import { ReactiveFormsModule } from '@angular/forms';
         MatInputModule,
 		ReactiveFormsModule
 	],
-	exports: []
+	exports: [],
+    providers: 
+	[
+		LoginCheckerService,
+		AdminNameResolver
+	]
 })
 export class AdminModule { }

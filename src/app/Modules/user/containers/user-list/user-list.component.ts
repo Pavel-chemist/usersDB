@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/Modules/shared/Interfaces/user.interface';
 import { UserDataProviderService } from 'src/app/Modules/user/services/user-data-provider.service';
 
@@ -8,18 +9,21 @@ import { UserDataProviderService } from 'src/app/Modules/user/services/user-data
 	styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-
-	private users: User[] = []; //reference list of all users, to be read-only
+	
 	public visibleItems: User[] = []; //list of users, shown at the moment, is subset of 'users'
-
-	constructor(service: UserDataProviderService ) 
+	public adminNickName: string = 'DefaultPlaceholderAdminName'; //should be replaced by Resolver
+	private users: User[] = []; //reference list of all users, to be read-only
+	constructor(service: UserDataProviderService,
+				private activatedRoute: ActivatedRoute ) 
 	{ 
 		this.users = service.getAllUsers();
 		this.revealAll(); //using this method to avoid code duplication
 		console.log('users data have been loaded');    
 	}
 
-	ngOnInit(): void {
+	ngOnInit(): void 
+	{
+		this.activatedRoute.data.subscribe( );
 	}
 
 	public hideFemales(): void

@@ -45,6 +45,7 @@ export class AdminLoginShellComponent implements OnInit {
 			else
 			{
 				console.log("no such admin found");
+				this.loginForm.loginFields.markAllAsTouched();
 				this.loginForm.invalidCredentials = true;
 				this.loginForm.loginFields.patchValue( { password: ''});
 			}

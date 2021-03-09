@@ -3,9 +3,8 @@ import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Admin, Creds } from '../admin.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
+
 export class LoginCheckerService {
 
 
@@ -44,4 +43,16 @@ export class LoginCheckerService {
 		return of(!!foundAdmin).pipe(delay(1000));
 	}
 
+	public getUserNameById( id: number ): Observable<string|undefined>
+	{
+		console.log('got id: ', id);
+
+		let adminNickName: string | undefined = this.admins.find( admin => admin.id === id)?.nickName;
+
+		console.log('found nockname: ', adminNickName);
+
+		return of(adminNickName).pipe(delay(1000));
+	}
+
 }
+

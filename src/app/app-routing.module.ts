@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminAccessGuard } from './Modules/admin-access.guard';
+import { AdminAccessGuard } from './Modules/admin/admin-access.guard';
+import { AdminNameResolver } from './Modules/admin/admin-name.resolver';
 import { AdminLoginShellComponent } from './Modules/admin/containers/admin-login-shell/admin-login-shell.component';
 import { Page404Component } from './Modules/shared/components/page404/page404.component';
 import { AddUserShellComponent } from './Modules/user/containers/add-user-shell/add-user-shell.component';
@@ -9,7 +10,7 @@ import { UserListComponent } from './Modules/user/containers/user-list/user-list
 
 const routes: Routes = 
 [
-  { path: 'user-list', component: UserListComponent, canActivate: [AdminAccessGuard] },
+  { path: 'user-list', component: UserListComponent, canActivate: [AdminAccessGuard]/* , resolve: [ { adminNickName: AdminNameResolver } ] */ },
   { path: 'add-user-form', component: AddUserShellComponent, canActivate: [AdminAccessGuard] },
   { path: 'edit-user/:id', component: EditUserShellComponent, canActivate: [AdminAccessGuard] },
   { path: 'admin-login', component: AdminLoginShellComponent},
