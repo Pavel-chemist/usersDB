@@ -1,3 +1,4 @@
+import { asLiteral } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,6 +19,8 @@ export class EditUserShellComponent implements OnInit {
 	public user: User;
     public dataIsLoaded: boolean = false;
     public dataIsSubmitted: boolean = false;
+    private submitButtonIsClicked: boolean = false;
+
 
 	constructor(
 		private route: ActivatedRoute,
@@ -34,12 +37,15 @@ export class EditUserShellComponent implements OnInit {
 				this.user = data;				//after receiving response, initiate this.user
 				console.log('User', data);
                 this.dataIsLoaded = true;
+
 			});
 	}
 
 	public onSubmit(): void {
 		console.log(`"Save Edits" button was clicked`);
 		console.log(this.form.AddUser);
+        
+        
 
 		const formValue: any = this.form.AddUser.value;
         if (this.form.AddUser.valid) 
@@ -68,6 +74,8 @@ export class EditUserShellComponent implements OnInit {
 
 		//	this.service.updateUser(this.user);
             this.dataIsSubmitted = true;
+            this.submitButtonIsClicked = true;
+
             this.service.updateUser(this.user).subscribe(() => {
                 //show snack-bar
                 console.log(`${Date.now() - timeStart}: got acknowledgement from server.`);
@@ -91,6 +99,27 @@ export class EditUserShellComponent implements OnInit {
             this.form.AddUser.markAllAsTouched();
         }
 
+	}
+
+    public isChanged(): boolean
+	{
+        if (this.submitButtonIsClicked || !this.form.AddUser.touched)
+        {
+            console.log('changes are submitted');
+            return true;
+        }
+        else
+        {
+		    console.log('there are unsubmitted changes');
+            this._snackBar.open(`Click "Save Edits" button to save changes`,
+                    "Dismiss", 
+                {
+                    duration: 3000, horizontalPosition: 'center',
+                    verticalPosition: 'bottom'
+                });
+            
+            return false;
+        }
 	}
 
 }

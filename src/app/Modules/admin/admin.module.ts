@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginCheckerService } from './services/login-checker.service';
 import { AdminAccessGuard } from './admin-access.guard';
+import { SignedAdminGuard } from './signed-admin.guard';
+import { UnsavedChangesGuard } from './unsaved-changes.guard';
 
 
 
@@ -27,7 +29,9 @@ import { AdminAccessGuard } from './admin-access.guard';
     providers: 
 	[
 		LoginCheckerService,
-		AdminAccessGuard
+		AdminAccessGuard, 
+		SignedAdminGuard,
+		UnsavedChangesGuard
 	]
 })
 export class AdminModule { }
