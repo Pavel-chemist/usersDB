@@ -40,7 +40,7 @@ export class AdminLoginShellComponent implements OnInit {
 					console.log("creds are good");
 					this.loginForm.invalidCredentials = false;
 					//route to the list of users
-					this.router.navigate(['/user']);
+					this.router.navigate(['/auth-shell']);
 
 				}
 				else

@@ -87,7 +87,7 @@ export class EditUserShellComponent implements OnInit {
                 setTimeout(() => { 	
 					// wait 3 seconds, and redirect to the list of users
                     console.log(`${Date.now() - timeStart}: Navigating to the List of users.`);
-                    this.router.navigate(['/user-list']);
+                    this.router.navigate(['auth-shell']);
                     this.dataIsSubmitted = false;
                 }, 3000);
 
