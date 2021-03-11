@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,22 +12,12 @@ export class HeaderComponent implements OnInit
 
 	public firstVisibleName: string = "";
 	
-	constructor( private router: Router ) {}
+	constructor() {}
 
 	ngOnInit(): void 
 	{
 	
 	}
 
-	public onNameToTop ( name: string )
-	{
-		this.firstVisibleName = name;
-	}
-
-	public onAddUserClick(): void
-	{
-		console.log('"Add User" button was clicked');
-		this.router.navigate(['user/add-user-form']);
-	}
 
 }
