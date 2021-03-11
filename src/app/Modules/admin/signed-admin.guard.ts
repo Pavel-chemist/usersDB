@@ -17,7 +17,7 @@ export class SignedAdminGuard implements CanActivate
 
 		if (isSigned)
 		{
-			this.router.navigate(['/user-list']);
+			this.router.navigate(['user']);
 		}
 		
 		return !isSigned;

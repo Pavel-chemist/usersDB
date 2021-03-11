@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/Modules/shared/Interfaces/user.interface';
 import { UserDataProviderService } from 'src/app/Modules/user/services/user-data-provider.service';
 
@@ -11,24 +10,15 @@ import { UserDataProviderService } from 'src/app/Modules/user/services/user-data
 export class UserListComponent implements OnInit {
 	
 	public visibleItems: User[] = []; //list of users, shown at the moment, is subset of 'users'
-	public adminNickName: string = 'DefaultPlaceholderAdminName'; //should be replaced by Resolver
 	private users: User[] = []; //reference list of all users, to be read-only
-	constructor(service: UserDataProviderService,
-				private activatedRoute: ActivatedRoute ) 
+	constructor(service: UserDataProviderService ) 
 	{ 
 		this.users = service.getAllUsers();
 		this.revealAll(); //using this method to avoid code duplication
 		console.log('users data have been loaded');    
 	}
 
-	ngOnInit(): void 
-	{
-		this.activatedRoute.data.subscribe( (data: any) =>
-		{
-			console.log('data from resolver: ', data );
-			this.adminNickName = data.adminNickName;	
-		});
-	}
+	ngOnInit(): void { }
 
 	public hideFemales(): void
 	{
@@ -53,13 +43,6 @@ export class UserListComponent implements OnInit {
 		  this.visibleItems.splice(userIndexToHide, 1);     
 		} 
   	}
-
-	public onSignOut(): void
-	{
-		console.log('admin tried to sign out');
-		localStorage.removeItem('signedAdmin');
-	}
-
 
 	private get males()
 	{

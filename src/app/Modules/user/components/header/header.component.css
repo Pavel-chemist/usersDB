@@ -1,9 +1,27 @@
-.head-name
+.head-block
 {
-    text-align: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: #e0fff0;
+    border: 1px solid #c0eea0;
+    min-width: 1200px;
+}
+
+.head-title
+{
+    position: absolute;
+    left: 45%;
     font-size: 24px;
     line-height: 50px;
     font-weight: bolder;
-    background-color: #e0fff0;
-    border: 1px solid #c0eea0;
+    margin: 0px;
+
+}
+
+.head-button
+{
+    margin: 0px 16px;
+    /* height: 20px; */
 }

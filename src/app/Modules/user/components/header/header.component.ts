@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,18 +9,26 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit 
 {
 
-  @Input() username: string = "";
+	@Input() username: string = "";
 
-  public firstVisibleName: string = "";
-  
-  ngOnInit(): void 
-  {
- 
-  }
+	public firstVisibleName: string = "";
+	
+	constructor( private router: Router ) {}
 
-  public onNameToTop ( name: string )
-  {
-    this.firstVisibleName = name;
-  }
+	ngOnInit(): void 
+	{
+	
+	}
+
+	public onNameToTop ( name: string )
+	{
+		this.firstVisibleName = name;
+	}
+
+	public onAddUserClick(): void
+	{
+		console.log('"Add User" button was clicked');
+		this.router.navigate(['user/add-user-form']);
+	}
 
 }

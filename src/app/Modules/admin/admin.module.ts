@@ -9,6 +9,8 @@ import { LoginCheckerService } from './services/login-checker.service';
 import { AdminAccessGuard } from './admin-access.guard';
 import { SignedAdminGuard } from './signed-admin.guard';
 import { UnsavedChangesGuard } from './unsaved-changes.guard';
+import { AuthUserShellComponent } from './containers/auth-user-shell/auth-user-shell.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -16,14 +18,16 @@ import { UnsavedChangesGuard } from './unsaved-changes.guard';
 	declarations:
 	[ 
 		AdminLoginShellComponent, 
-		AdminLoginFormComponent 
+		AdminLoginFormComponent, 
+		AuthUserShellComponent 
 	],
 	imports: 
 	[
 		CommonModule,
 		MatButtonModule,
         MatInputModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		RouterModule
 	],
 	exports: [],
     providers: 
