@@ -6,18 +6,11 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit 
-{
-
-	@Input() username: string = "";
-
-	public firstVisibleName: string = "";
-	
+{	
 	constructor() {}
 
 	ngOnInit(): void 
 	{
 	
 	}
-
-
 }

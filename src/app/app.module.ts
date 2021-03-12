@@ -14,6 +14,7 @@ import { SharedModule } from './Modules/shared/shared.module';
 
 import { UserListComponent } from './Modules/user/containers/user-list/user-list.component';
 import { AdminModule } from './Modules/admin/admin.module';
+import { MiscModule } from './Modules/misc/misc.module';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AdminModule } from './Modules/admin/admin.module';
 //  internal feature modules:
     UserModule,     
     SharedModule,
-    AdminModule
+    AdminModule,
+    MiscModule
   ],
   providers: [],
   bootstrap: [AppComponent]
