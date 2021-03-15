@@ -1,5 +1,19 @@
-<p>cities works!</p>
+<div class="sities-main-container">
+    <p>List of cities</p>
 
-<ul>
-    <li *ngFor="let city of citiesArray">{{city | formatCity}}</li>
-</ul>
+    <ul>
+        <li *ngFor="let city of citiesArray">{{city | formatCity}}</li>
+    </ul>
+
+    <!-- add input -->
+
+    <mat-form-field class="user-form-text-field">
+        <mat-label>Start entering city name:</mat-label>
+        <input matInput type="text" [formControl]="cityName" (input)="onInput()">
+    </mat-form-field>
+    <div>
+        <div class="sities-suggestion-output">
+            {{citySuggestion | formatCity }}
+        </div>
+    </div>
+</div>

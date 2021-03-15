@@ -6,9 +6,19 @@ import { City } from '../../shared/Interfaces/city.interface';
 })
 export class FormatCityPipe implements PipeTransform {
 
-	transform( value: City ): string 
+	transform( value: City | undefined ): string 
 	{
-		let formattedCityName: string = `${value.city}, ${value.country} - ${value.region}`;
+		let formattedCityName: string;
+		if ( value == undefined )
+		{
+			formattedCityName = '';
+		}
+		else
+		{
+			formattedCityName = `${value.city}, ${value.country} - ${value.region}`;
+		}
+
+		console.log(value);
 
 		return formattedCityName;
 	}

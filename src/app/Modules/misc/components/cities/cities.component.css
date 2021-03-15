@@ -1,0 +1,16 @@
+.sities-main-container
+{
+    display: block;
+    padding: 32px;
+}
+
+.sities-suggestion-output
+{
+    display: inline-block;
+    padding: 16px;
+    /* margin: 8px auto 8px 0px; */
+    background-color: #f0f7ff;
+    line-height: 32px;
+    height: 40px;
+    min-width: 256px;
+}

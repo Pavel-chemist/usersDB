@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CitiesComponent } from './components/cities/cities.component';
 import { FormatCityPipe } from './pipes/format-city.pipe';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -14,7 +16,9 @@ import { FormatCityPipe } from './pipes/format-city.pipe';
 	],
 	imports: 
 	[
-		CommonModule
+		CommonModule,
+		MatInputModule,
+		ReactiveFormsModule
 	]
 })
 
