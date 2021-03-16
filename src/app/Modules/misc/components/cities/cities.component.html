@@ -9,7 +9,6 @@
         <li *ngFor="let city of citiesArrayObservable$ | async">{{city | formatCity}}</li>
     </ul>
 
-    <!-- add input -->
 
     <mat-form-field class="user-form-text-field">
         <mat-label>Start entering city name:</mat-label>
@@ -21,3 +20,4 @@
         </div>
     </div>
 </div>
+<app-parent></app-parent>

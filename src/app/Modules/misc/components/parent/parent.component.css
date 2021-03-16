@@ -1,0 +1,8 @@
+.parent-container
+{
+    width: 512px;
+    height: 256px;
+    border: 2px solid #707070;
+    margin: 32px;
+    padding: 16px;
+}

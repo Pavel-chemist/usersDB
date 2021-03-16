@@ -1,0 +1,15 @@
+.child-container
+{
+    width: 256px;
+    height: 128px;
+    border: 2px solid #c0f070;
+    margin: 32px;
+    padding: 16px;
+}
+
+.child-time-display
+{
+    margin-top: 32px;
+    padding: 6px;
+    border: 1px solid #700000;
+}
