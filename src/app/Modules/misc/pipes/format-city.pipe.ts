@@ -18,7 +18,7 @@ export class FormatCityPipe implements PipeTransform {
 			formattedCityName = `${value.city}, ${value.country} - ${value.region}`;
 		}
 
-		console.log(value);
+		// console.log(value);
 
 		return formattedCityName;
 	}

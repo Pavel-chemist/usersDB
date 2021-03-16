@@ -1,8 +1,12 @@
 <div class="sities-main-container">
     <p>List of cities</p>
 
-    <ul>
+    <!-- <ul>
         <li *ngFor="let city of citiesArray">{{city | formatCity}}</li>
+    </ul> -->
+
+    <ul>
+        <li *ngFor="let city of citiesArrayObservable$ | async">{{city | formatCity}}</li>
     </ul>
 
     <!-- add input -->

@@ -4,6 +4,7 @@ import { CitiesComponent } from './components/cities/cities.component';
 import { FormatCityPipe } from './pipes/format-city.pipe';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CitiesDataProviderService } from './services/cities-data-provider.service';
 
 
 
@@ -19,6 +20,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 		CommonModule,
 		MatInputModule,
 		ReactiveFormsModule
+	],
+	providers:
+	[
+		CitiesDataProviderService
 	]
 })
 
