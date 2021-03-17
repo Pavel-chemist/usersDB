@@ -1,10 +1,6 @@
 <div class="sities-main-container">
     <p>List of cities</p>
 
-    <!-- <ul>
-        <li *ngFor="let city of citiesArray">{{city | formatCity}}</li>
-    </ul> -->
-
     <ul>
         <li *ngFor="let city of citiesArrayObservable$ | async">{{city | formatCity}}</li>
     </ul>
@@ -12,7 +8,7 @@
 
     <mat-form-field class="user-form-text-field">
         <mat-label>Start entering city name:</mat-label>
-        <input matInput type="text" [formControl]="cityName" (input)="onInput()">
+        <input matInput type="text" [formControl]="cityName">
     </mat-form-field>
     <div>
         <div class="sities-suggestion-output">

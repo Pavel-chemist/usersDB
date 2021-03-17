@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-child',
@@ -7,16 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChildComponent implements OnInit {
 
+	@Input() messageFromSubject$: Observable<any>;
+
 	public timeDisplay: string = 'placeholderValue';
 
-	private dateValue: Date = new Date;
+	// private dateValue: Date = new Date;
+	private firstMillisecondsValue: number = Date.now();
 
-	constructor( ) { }
+	constructor( ) 
+	{ 
+		
+	}
 
 	ngOnInit(): void 
 	{
-		console.log(this.dateValue);
-		this.timeDisplay = `${this.dateValue.toDateString()} -- ${this.dateValue.toLocaleTimeString()}`;
+		this.messageFromSubject$.subscribe(
+			(data: string) => 
+			{ 
+				console.log('data: ', data); 
+				this.timeDisplay = `${data}; ${(Date.now() - this.firstMillisecondsValue)/1000} seconds.`;
+			}
+		);
 	}
 
 }

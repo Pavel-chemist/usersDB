@@ -8,42 +8,49 @@ import { Subject, Observable } from 'rxjs';
 })
 export class ParentComponent implements OnInit {
 
-	private dateValue: Date = new Date;
-
-	private subject = new Subject<string>();
 	
+
+	private subject = new Subject<string>();	
+	public  dateVal$ = this.subject.asObservable();
+
+	private runSpammer: boolean = true;
+	private n: number = 0;
 
 	constructor() { }
 
 	ngOnInit(): void 
 	{
-/* 		// We subscribe to the subject
-		this.subject.subscribe((data) => 
-		{
-			console.log("Subscriber got data >>>>> "+ data);
-		});
-
-		// We use the subject to emit data
-		this.subject.next("Eureka"); */
-		this.consoleSpammer(0);
+		this.consoleSpammer();
 	}
 
-	private consoleSpammer( n: number ): void
+	public onClick(): void
 	{
-		n++;
-		if ( n <= 10 )
+		console.log(`Button was clicked`);
+		
+		this.runSpammer = !this.runSpammer;
+		console.log("run: ", this.runSpammer );
+		if ( this.runSpammer )
 		{
-			console.log(`spam message #${n}; ${Date.now()}`);
-			setTimeout( () => this.consoleSpammer(n), 1500);
-			//TO DO
-			/* 
-				emit events using Subject,
-				which are received by listener in Child
-				and displayed there
-			*/
+			this.consoleSpammer();
+		}
+	}
+
+	private consoleSpammer(): void
+	{
+		let outputString: string;
+		this.n++;
+		if ( this.n >= 0 && this.runSpammer)
+		{
+			outputString = `spam message #${this.n}`;
+			console.log(outputString);
+			setTimeout( () => this.consoleSpammer(), 1500);
+			
+			//emitting the events using .next() method of Subject
+			this.subject.next(outputString);
 			
 		}
 	}
+
 
 
 }
