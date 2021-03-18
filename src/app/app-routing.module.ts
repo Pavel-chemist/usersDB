@@ -4,6 +4,7 @@ import { AdminNameResolver } from './Modules/admin/admin-name.resolver';
 import { AdminLoginShellComponent } from './Modules/admin/containers/admin-login-shell/admin-login-shell.component';
 import { SignedAdminGuard } from './Modules/admin/signed-admin.guard';
 import { CitiesComponent } from './Modules/misc/components/cities/cities.component';
+import { InputMergerComponent } from './Modules/misc/components/input-merger/input-merger.component';
 import { Page404Component } from './Modules/shared/components/page404/page404.component';
 
 const routes: Routes = 
@@ -20,6 +21,10 @@ const routes: Routes =
 	{
 		path: 'cities',
 		component: CitiesComponent
+	},
+	{
+		path: 'merger',
+		component: InputMergerComponent
 	},
 	{ path: '', redirectTo: '/admin-login', pathMatch: 'full' },
 	{ path: '**', component: Page404Component }

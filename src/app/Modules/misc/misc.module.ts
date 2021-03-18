@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CitiesDataProviderService } from './services/cities-data-provider.service';
 import { ParentComponent } from './components/parent/parent.component';
 import { ChildComponent } from './components/child/child.component';
+import { InputMergerComponent } from './components/input-merger/input-merger.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,13 +19,15 @@ import { ChildComponent } from './components/child/child.component';
 		CitiesComponent,
 		FormatCityPipe,
 		ParentComponent,
-		ChildComponent
+		ChildComponent,
+		InputMergerComponent
 	],
 	imports: 
 	[
 		CommonModule,
 		MatInputModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		RouterModule
 	],
 	providers:
 	[

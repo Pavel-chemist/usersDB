@@ -1,0 +1,29 @@
+.input-merger-main-container
+{
+    display: block;
+    padding: 32px;
+    width: 512px;
+    height: 512px;
+    margin: auto;
+    background-color: #f0fff7;
+    border: 1px solid #d0ffe0;
+}
+
+.input-merger-text-field
+{
+    display: block;
+    width: 90%;
+    margin: 8px 16px 0px 16px;
+    background-color: #f7f7f7;
+}
+
+.input-merger-output
+{
+    display: block;
+    margin: 8px 16px 0px 16px;
+    padding: 16px;
+    background-color: #f0f7ff;
+    line-height: 32px;
+    height: 40px;
+    width: 90%;
+}

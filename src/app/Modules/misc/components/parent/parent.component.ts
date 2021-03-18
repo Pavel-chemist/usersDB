@@ -13,16 +13,17 @@ export class ParentComponent implements OnInit {
 	private subject = new Subject<string>();	
 	public  dateVal$ = this.subject.asObservable();
 
-	private runSpammer: boolean = true;
+	private runSpammer: boolean = false;
 	private n: number = 0;
 
 	constructor() { }
 
 	ngOnInit(): void 
 	{
-		this.consoleSpammer();
+		// this.consoleSpammer();
 	}
 
+	
 	public onClick(): void
 	{
 		console.log(`Button was clicked`);
@@ -31,6 +32,7 @@ export class ParentComponent implements OnInit {
 		console.log("run: ", this.runSpammer );
 		if ( this.runSpammer )
 		{
+			this.n--; //костыль
 			this.consoleSpammer();
 		}
 	}

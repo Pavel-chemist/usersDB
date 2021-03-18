@@ -10,10 +10,10 @@ export class ChildComponent implements OnInit {
 
 	@Input() messageFromSubject$: Observable<any>;
 
-	public timeDisplay: string = 'placeholderValue';
+	public timeDisplay: string = 'click "Toggle spammer" button';
 
 	// private dateValue: Date = new Date;
-	private firstMillisecondsValue: number = Date.now();
+	private firstMillisecondsValue: number = 0;
 
 	constructor( ) 
 	{ 
@@ -25,6 +25,10 @@ export class ChildComponent implements OnInit {
 		this.messageFromSubject$.subscribe(
 			(data: string) => 
 			{ 
+				if (!this.firstMillisecondsValue)
+				{
+					this.firstMillisecondsValue = Date.now();
+				}
 				console.log('data: ', data); 
 				this.timeDisplay = `${data}; ${(Date.now() - this.firstMillisecondsValue)/1000} seconds.`;
 			}
