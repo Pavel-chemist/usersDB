@@ -18,10 +18,7 @@ export class ParentComponent implements OnInit {
 
 	constructor() { }
 
-	ngOnInit(): void 
-	{
-		// this.consoleSpammer();
-	}
+	ngOnInit(): void { }
 
 	
 	public onClick(): void
